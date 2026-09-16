@@ -1,0 +1,231 @@
+<!doctype html>
+<!--
+  SAMAN · SPINE FRAME 07 — TWO-STATE BOARD
+  One vertical line splitting the canvas. Manual way on the left, system way on
+  the right. The asymmetry IS the argument: the left is flat and quiet, the right
+  is Paper, ringed and crisp. The reader should feel which side wins before
+  reading a word.
+
+  Class names are the contract the scripts measure by. Sample copy is placeholder.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Saman · Two-State Board</title>
+<style>
+@font-face{font-family:Inter;font-weight:400;font-style:normal;font-display:block;src:url({{INTER_400}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:500;font-style:normal;font-display:block;src:url({{INTER_500}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:600;font-style:normal;font-display:block;src:url({{INTER_600}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:700;font-style:normal;font-display:block;src:url({{INTER_700}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:800;font-style:normal;font-display:block;src:url({{INTER_800}}) format('woff2')}
+
+:root{
+  --sky:#EBF6FF; --sky-deep:#DCEEFC; --paper:#FFFFFF;
+  --blue:#90CAF8; --blue-mid:#6FB6F0; --blue-pale:#C9E4FB;
+  --ink:#051D2F; --ink-70:#40566A; --ink-45:#7D8D9C;
+  --shadow:0 2px 10px rgba(5,29,47,.07);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --r-card:14px; --r-panel:18px; --r-round:999px;
+  --w-hair:1px; --w-ring:3px; --w-spine:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:Inter,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--sky)}
+.spine{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.spine path{fill:none;stroke:var(--blue);stroke-width:var(--w-spine);
+            stroke-linecap:round;stroke-linejoin:round}
+.content{position:relative;z-index:1;padding:48px 56px 0}
+.rowband{min-height:var(--rh)}
+
+/* ---- head ---- */
+.h1{font:800 56px/1.16 Inter;letter-spacing:-.025em;color:var(--ink)}
+.pill{background:var(--ink);color:var(--sky);border-radius:var(--r-round);
+      padding:.08em .42em;letter-spacing:-.01em;white-space:nowrap}
+.deck{font:500 20px/1.45 Inter;letter-spacing:-.005em;color:var(--ink-70);margin-top:var(--s4)}
+.heads{display:grid;grid-template-columns:456px 56px 456px;margin-top:var(--s5)}
+.seclab{font:700 15px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.seclab.quiet{color:var(--ink-45)}
+.seclab.right{text-align:left}
+
+/* ---- board ---- */
+.board{display:grid;grid-template-columns:456px 56px 456px;row-gap:14px;margin-top:var(--s3)}
+.card{position:relative;height:153px;padding:var(--s4) var(--s5);border-radius:var(--r-card);
+      display:flex;flex-direction:column;justify-content:center}
+
+/* left: the manual way — flat, quiet, no lift */
+.card.manual{background:var(--sky-deep);border:var(--w-hair) solid transparent}
+.card.manual .ctitle{color:var(--ink-70)}
+.card.manual .body{color:var(--ink-45)}
+.card.manual::after{content:'';position:absolute;right:-28px;top:50%;margin-top:-2px;
+      width:28px;height:4px;background:var(--blue);border-radius:2px}
+
+/* right: the system way — Paper, ringed, lifted */
+.card.system{background:var(--paper);border:var(--w-hair) solid var(--blue-pale);
+      box-shadow:var(--shadow)}
+.card.system::before{content:'';position:absolute;left:-28px;top:50%;margin-top:-2px;
+      width:28px;height:4px;background:var(--blue);border-radius:2px}
+
+.ctitle{font:600 19px/1.3 Inter;letter-spacing:-.01em;color:var(--ink)}
+.body{font:400 15px/1.45 Inter;color:var(--ink-70);margin-top:var(--s2)}
+.spacer{grid-column:2}
+
+/* ---- the divider node ---- */
+.vs{position:absolute;left:540px;top:300px;margin:-16px 0 0 -16px;width:32px;height:32px;
+    border-radius:var(--r-round);background:var(--ink);color:var(--sky);z-index:2;
+    display:grid;place-items:center;font:700 13px/1 Inter;letter-spacing:.04em}
+
+/* ---- closer ---- */
+.verdict{position:relative;grid-column:1 / -1;height:104px;background:var(--ink);
+         border-radius:var(--r-panel);padding:var(--s4) var(--s6);display:flex;
+         align-items:center;justify-content:space-between;margin-top:var(--s1)}
+.verdict .vlab{font:500 16px/1.4 Inter;color:#B9CBD8;max-width:640px}
+.verdict .vnum{font:800 40px/1 Inter;letter-spacing:-.03em;color:var(--sky)}
+
+/* ---- footer ---- */
+.footer{position:absolute;top:1306px;left:0;right:0;height:44px;background:var(--ink);
+        display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:2}
+.footer .who{display:flex;align-items:center;gap:10px}
+.footer img{width:28px;height:28px;border-radius:var(--r-round);display:block}
+.footer .name{font:600 15px/1 Inter;color:var(--sky)}
+.footer .handle{font:600 15px/1 Inter;color:var(--blue)}
+</style>
+</head>
+<body>
+
+<div class="canvas sky">
+
+  <!-- THE SPINE: one vertical line, top to bottom, splitting the two states -->
+  <svg class="spine" viewBox="0 0 1080 1350" preserveAspectRatio="none">
+    <path id="spine" d="M 540 300 L 540 1240"/>
+  </svg>
+  <div class="vs">VS</div>
+
+  <div class="content">
+
+    <div class="rowband" id="head" style="--rh:252px">
+      <h1 class="h1">Manual Founder vs <span class="pill">SYSTEM</span> Founder</h1>
+      <p class="deck">Same week, same tools. One of them set it up once.</p>
+      <div class="heads">
+        <div class="seclab quiet">Doing it by hand</div>
+        <div></div>
+        <div class="seclab right">Running as a system</div>
+      </div>
+    </div>
+
+    <div class="rowband" id="body" style="--rh:960px">
+      <div class="board">
+
+        <div class="card manual">
+          <div class="ctitle">Reads every email</div>
+          <div class="body">Opens the inbox at 7am and works down it until something urgent interrupts.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="card system">
+          <div class="ctitle">Reads eleven emails</div>
+          <div class="body">Opens a sorted shortlist with drafts attached. The rest are already handled.</div>
+        </div>
+
+        <div class="card manual">
+          <div class="ctitle">Rewrites the same brief</div>
+          <div class="body">Explains the company, the tone and the audience again in every new chat.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="card system">
+          <div class="ctitle">Writes the brief once</div>
+          <div class="body">Context lives in a project. Every chat starts knowing the business.</div>
+        </div>
+
+        <div class="card manual">
+          <div class="ctitle">Notes that go nowhere</div>
+          <div class="body">Calls end, the notes sit in a doc, and the actions are remembered or not.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="card system">
+          <div class="ctitle">Actions with owners</div>
+          <div class="body">Every call ends as a decision log in the tracker, with names and dates.</div>
+        </div>
+
+        <div class="card manual">
+          <div class="ctitle">Rebuilds Friday's report</div>
+          <div class="body">Pulls the same numbers from the same four tools, by hand, every week.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="card system">
+          <div class="ctitle">Reviews Friday's report</div>
+          <div class="body">It is already written in the shape the team reads. She checks it and sends.</div>
+        </div>
+
+        <div class="card manual">
+          <div class="ctitle">Posts when there is time</div>
+          <div class="body">Which means three good weeks, then a month of nothing.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="card system">
+          <div class="ctitle">Posts on a schedule</div>
+          <div class="body">One idea a week, cut for each channel, queued before Monday.</div>
+        </div>
+
+        <div class="verdict">
+          <div class="vlab">Same tools. Same week. The difference is one afternoon spent setting
+            it up instead of doing it again.</div>
+          <div class="vnum">10 hrs</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="who">
+      <img src="{{AVATAR}}" alt="">
+      <span class="name">Follow Saman Ahmed For More</span>
+    </div>
+    <span class="handle">@ScaleWthAI</span>
+  </div>
+</div>
+
+<script>
+/* MOTION — divider draws 0-30%, the manual side fades in 30-58%,
+   the system side lands with a pop 58-92%, the verdict closes 92-100%.
+   The order is the argument: you see the problem before you see the fix. */
+(function(){
+  const path    = document.getElementById('spine');
+  const LEN     = path.getTotalLength();
+  const vs      = document.querySelector('.vs');
+  const manual  = [...document.querySelectorAll('.card.manual')];
+  const system  = [...document.querySelectorAll('.card.system')];
+  const verdict = document.querySelector('.verdict');
+  const ease    = t => 1 - Math.pow(1 - t, 3);
+  const cl      = t => Math.max(0, Math.min(1, t));
+
+  path.style.strokeDasharray = LEN;
+
+  window.renderFrame = function(t){
+    const draw = cl(t / 0.30);
+    path.style.strokeDashoffset = LEN * (1 - ease(draw));
+    vs.style.opacity   = cl((t - 0.18) / 0.10);
+    vs.style.transform = `scale(${0.7 + 0.3 * ease(cl((t - 0.18) / 0.10))})`;
+
+    manual.forEach((c, i) => {
+      const p = cl((t - (0.30 + i * 0.05)) / 0.10);
+      c.style.opacity = p * 0.92;
+      c.style.transform = `translateX(${(1 - ease(p)) * -14}px)`;
+    });
+    system.forEach((c, i) => {
+      const p = cl((t - (0.58 + i * 0.062)) / 0.11);
+      c.style.opacity = p;
+      c.style.transform = `translateX(${(1 - ease(p)) * 18}px) scale(${0.97 + 0.03 * ease(p)})`;
+    });
+
+    const v = cl((t - 0.92) / 0.08);
+    verdict.style.opacity   = v;
+    verdict.style.transform = `translateY(${(1 - ease(v)) * 14}px)`;
+  };
+
+  window.renderFrame(0);
+})();
+</script>
+</body>
+</html>

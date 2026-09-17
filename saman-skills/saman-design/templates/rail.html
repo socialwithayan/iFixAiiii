@@ -31,7 +31,11 @@
   --r-card:20px; --r-panel:24px; --r-round:999px;
   --w-hair:1px; --w-ring:3px; --w-spine:4px;
   --bright:#F2506A; --bright-deep:#B0243C;
-  --p1:#FFE4DE; --p2:#FFF2D6; --p3:#FFE9F3; --p4:#F4EBFF; --p5:#E3F2FD;
+  --p1:#FFE4DE; --e1:#F6C0B4; --n1:#B23F1E;
+  --p2:#FFF2D6; --e2:#F0D592; --n2:#8A5A00;
+  --p3:#FFE9F3; --e3:#F4BFD8; --n3:#A81E68;
+  --p4:#F4EBFF; --e4:#D7C2F4; --n4:#5A2C9E;
+  --p5:#E3F2FD; --e5:#B4D8F4; --n5:#0D47A1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#fff;font-family:Inter,system-ui,sans-serif;
@@ -54,7 +58,7 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
 .rail{margin-top:var(--s4);margin-left:92px;   /* clears the spine at x=100 */
       display:flex;flex-direction:column;gap:var(--s4)}
 .card{position:relative;height:156px;background:var(--p1);border-radius:var(--r-card);
-      border:var(--w-hair) solid rgba(5,29,47,.07);box-shadow:var(--shadow);
+      border:2px solid var(--e1);box-shadow:var(--shadow);
       padding:var(--s5) var(--s6);display:flex;flex-direction:column;
       justify-content:center}
 /* the stub: card -> spine. Drawn by the card, so it follows the card. */
@@ -70,12 +74,18 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
        text-transform:uppercase;color:var(--bright-deep);background:var(--paper);
        border-radius:var(--r-round);padding:7px 12px}
 
-/* cards rotate through the pastel family — pale enough to read as one family */
-.rail > .card:nth-of-type(1){background:var(--p1)}
-.rail > .card:nth-of-type(2){background:var(--p2)}
-.rail > .card:nth-of-type(3){background:var(--p3)}
-.rail > .card:nth-of-type(4){background:var(--p4)}
-.rail > .card:nth-of-type(5){background:var(--p5)}
+/* one family per card: fill, its own border, its own title tone.
+   The tonal border is the craft move — a grey hairline reads cheap. */
+.rail > .card:nth-of-type(1){background:var(--p1);border-color:var(--e1)}
+.rail > .card:nth-of-type(1) .ctitle{color:var(--n1)}
+.rail > .card:nth-of-type(2){background:var(--p2);border-color:var(--e2)}
+.rail > .card:nth-of-type(2) .ctitle{color:var(--n2)}
+.rail > .card:nth-of-type(3){background:var(--p3);border-color:var(--e3)}
+.rail > .card:nth-of-type(3) .ctitle{color:var(--n3)}
+.rail > .card:nth-of-type(4){background:var(--p4);border-color:var(--e4)}
+.rail > .card:nth-of-type(4) .ctitle{color:var(--n4)}
+.rail > .card:nth-of-type(5){background:var(--p5);border-color:var(--e5)}
+.rail > .card:nth-of-type(5) .ctitle{color:var(--n5)}
 
 /* ---- closer ---- */
 .verdict{position:relative;height:110px;background:var(--ink);border-radius:var(--r-panel);

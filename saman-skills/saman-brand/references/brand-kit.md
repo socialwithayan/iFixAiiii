@@ -31,12 +31,15 @@ needs a colour that is not here, the sheet is wrong.
   --bright:      #F2506A;   /* node rings, the closing figure               */
   --bright-deep: #B0243C;   /* chip text, small emphasis (4.5:1 on --p1)    */
 
-  /* ---- SOFT FILLS: the pastel family. Card backgrounds only ---- */
-  --p1: #FFE4DE;   /* peach   */
-  --p2: #FFF2D6;   /* cream   */
-  --p3: #FFE9F3;   /* rose    */
-  --p4: #F4EBFF;   /* orchid  */
-  --p5: #E3F2FD;   /* pale sky (Material Blue 50 — her blue's own family)   */
+  /* ---- SOFT FAMILIES: five hues, three values each ----
+     fill = the card · edge = its border, same hue deeper · name = its title.
+     A card is always all three from ONE family. Mixing families inside a card
+     is what makes a pastel sheet look assembled rather than designed.        */
+  --p1: #FFE4DE;  --e1: #F6C0B4;  --n1: #B23F1E;   /* peach  */
+  --p2: #FFF2D6;  --e2: #F0D592;  --n2: #8A5A00;   /* cream  */
+  --p3: #FFE9F3;  --e3: #F4BFD8;  --n3: #A81E68;   /* rose   */
+  --p4: #F4EBFF;  --e4: #D7C2F4;  --n4: #5A2C9E;   /* orchid */
+  --p5: #E3F2FD;  --e5: #B4D8F4;  --n5: #0D47A1;   /* sky — Material Blue 50/900 */
 
   /* ---- the only shadow ---- */
   --shadow:    0 2px 10px rgba(5,29,47,.07);
@@ -102,9 +105,19 @@ LOCKED           Sky #EBF6FF      Blue #90CAF8     Ink #051D2F
 BRIGHT           #F2506A          #B0243C
    points          rings, figure    chip text
 
-SOFT FILLS       #FFE4DE  #FFF2D6  #FFE9F3  #F4EBFF  #E3F2FD
-   card backgrounds only, never text, never the spine
+SOFT FAMILIES    peach    cream    rose     orchid   sky
+   fill            #FFE4DE  #FFF2D6  #FFE9F3  #F4EBFF  #E3F2FD   card background
+   edge            #F6C0B4  #F0D592  #F4BFD8  #D7C2F4  #B4D8F4   its border
+   name            #B23F1E  #8A5A00  #A81E68  #5A2C9E  #0D47A1   its card title
 ```
+
+**The tonal border is what makes it look designed.** A pastel card with a neutral grey
+hairline reads cheap; the same card bordered in a deeper tone of its own hue reads considered.
+It costs one CSS value and it is the single biggest difference between a good pastel sheet and
+a generic one.
+
+Every title tone clears 4.5:1 on its own fill, so a coloured card title is fully readable —
+it is not decoration.
 
 **Counting colours.** The craft benchmark for this kind of sheet is 5–7 colours. Hers reads as
 five: ground, type, spine, bright, and the pastel family — because the five fills sit at the
@@ -122,6 +135,20 @@ leaves the spine. That separation is what keeps ten named colours reading as fiv
 ```
 
 Exactly one per sheet, in the headline only.
+
+## The headline bar — an alternative to the inline pill
+
+A full-width Ink bar carrying the second line of the headline in `--sky` caps. Heavier than
+the inline pill and it holds a longer phrase.
+
+```css
+.h1bar{display:inline-block; background:var(--ink); color:var(--sky);
+       border-radius:var(--r-card); padding:.06em .28em; letter-spacing:-.02em}
+```
+
+**Pill or bar, never both.** They are two answers to the same question, and a sheet that uses
+both has decided nothing. The bar suits a two-line headline where the whole second line is the
+claim; the pill suits one word inside a flowing line.
 
 ## The spine
 
@@ -157,13 +184,21 @@ stay neutral (dense tables, a matrix) and the pastels when the sheet wants warmt
 
 ```css
 .card{background:var(--p1); border-radius:var(--r-card);
-      border:var(--w-hair) solid rgba(5,29,47,.07);
+      border:2px solid var(--e1);          /* 2px, tonal — not a grey hairline */
       box-shadow:var(--shadow); padding:var(--s5)}
-.rail > .card:nth-of-type(1){background:var(--p1)}
-.rail > .card:nth-of-type(2){background:var(--p2)}
-.rail > .card:nth-of-type(3){background:var(--p3)}
-.rail > .card:nth-of-type(4){background:var(--p4)}
-.rail > .card:nth-of-type(5){background:var(--p5)}
+.card .ctitle{color:var(--n1)}
+
+/* one family per card, all three values together */
+.rail > .card:nth-of-type(1){background:var(--p1);border-color:var(--e1)}
+.rail > .card:nth-of-type(1) .ctitle{color:var(--n1)}
+.rail > .card:nth-of-type(2){background:var(--p2);border-color:var(--e2)}
+.rail > .card:nth-of-type(2) .ctitle{color:var(--n2)}
+.rail > .card:nth-of-type(3){background:var(--p3);border-color:var(--e3)}
+.rail > .card:nth-of-type(3) .ctitle{color:var(--n3)}
+.rail > .card:nth-of-type(4){background:var(--p4);border-color:var(--e4)}
+.rail > .card:nth-of-type(4) .ctitle{color:var(--n4)}
+.rail > .card:nth-of-type(5){background:var(--p5);border-color:var(--e5)}
+.rail > .card:nth-of-type(5) .ctitle{color:var(--n5)}
 
 /* BRIGHT does the pointing, and only these three things */
 .node{border-color:var(--bright)}

@@ -10,7 +10,7 @@ Pick one variant per component per sheet. Do not mix two card styles on one shee
 
 ---
 
-## Headers — 4 variants
+## Headers — 5 variants
 
 **H1 · Stacked** *(default)*
 Headline, then deck under it. Full width. Nothing else.
@@ -28,13 +28,19 @@ Headline, deck, then a label row that names the two sides.
 A `.seclab` eyebrow above the headline ("THE FRIDAY PROBLEM"), then headline, then deck.
 → Use when the topic needs one line of framing before the claim lands.
 
+**H5 · Headline bar**
+Line one plain Ink, line two inside a full-width Ink bar in `--sky` caps.
+→ Use when the whole second line is the claim, not one word of it. Heavier and more
+declarative than the inline pill. **Pill or bar, never both on one sheet.**
+
 ---
 
-## Cards — 5 variants
+## Cards — 6 variants
 
-**C1 · Warm fill** *(default)*
-Pastel background rotating through `--p1`…`--p5`, hairline at 7% Ink, soft shadow.
-→ The workhorse. Warm, readable, unmistakably hers.
+**C1 · Tonal family** *(default)*
+Pastel fill, 2px border in the same hue one step deeper, card title in that family's name
+tone, soft shadow. Cards rotate through the five families down the sheet.
+→ The workhorse, and the variant that carries most of the craft.
 
 **C2 · Neutral**
 `--paper` fill, `--blue-pale` hairline.
@@ -49,8 +55,14 @@ Pastel background rotating through `--p1`…`--p5`, hairline at 7% Ink, soft sha
 → The closer. Never more than one.
 
 **C5 · Split card**
-Warm fill, with a `--sky-deep` strip down the right third holding a figure or a before-value.
+Tonal fill, with a strip down the right third in the same family's edge tone, holding a figure
+or a before-value.
 → Use when every card carries a number worth isolating.
+
+**C6 · Dense tile**
+Tonal family card at half height, no body copy — title plus one line. Six to nine in a grid.
+→ For a reference sheet people will save and zoom. Density is the point; keep the tonal
+borders or it turns into a wall.
 
 ---
 
@@ -121,7 +133,7 @@ Ink block, one instruction and a time box: "Start with #2. Twenty minutes."
 | Big-number sheet | H2 | C1 | N1 | P3 | X2 |
 | Manual vs system | H3 | C3 + C1 | N2 | P2 | X1 |
 | Step-by-step setup | H4 | C1 | N1 | P1 | X4 |
-| Dense reference | H1 | C2 | N1 | P2 | X3 |
+| Dense reference | H5 | C6 | N1 | P2 | X3 |
 | Hard truth (Ink canvas) | H4 | C1 | N2 | P3 | X3 |
 
 ---

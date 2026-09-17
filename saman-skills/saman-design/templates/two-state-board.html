@@ -28,7 +28,11 @@
   --r-card:20px; --r-panel:24px; --r-round:999px;
   --w-hair:1px; --w-ring:3px; --w-spine:4px;
   --bright:#F2506A; --bright-deep:#B0243C;
-  --p1:#FFE4DE; --p2:#FFF2D6; --p3:#FFE9F3; --p4:#F4EBFF; --p5:#E3F2FD;
+  --p1:#FFE4DE; --e1:#F6C0B4; --n1:#B23F1E;
+  --p2:#FFF2D6; --e2:#F0D592; --n2:#8A5A00;
+  --p3:#FFE9F3; --e3:#F4BFD8; --n3:#A81E68;
+  --p4:#F4EBFF; --e4:#D7C2F4; --n4:#5A2C9E;
+  --p5:#E3F2FD; --e5:#B4D8F4; --n5:#0D47A1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#fff;font-family:Inter,system-ui,sans-serif;
@@ -64,13 +68,18 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
       width:28px;height:4px;background:var(--blue);border-radius:2px}
 
 /* right: the system way — Paper, ringed, lifted */
-.card.system{background:var(--p1);border:var(--w-hair) solid rgba(5,29,47,.07);
+.card.system{background:var(--p1);border:2px solid var(--e1);
       box-shadow:var(--shadow)}
-.board > .card.system:nth-of-type(3){background:var(--p1)}
-.board > .card.system:nth-of-type(6){background:var(--p2)}
-.board > .card.system:nth-of-type(9){background:var(--p3)}
-.board > .card.system:nth-of-type(12){background:var(--p4)}
-.board > .card.system:nth-of-type(15){background:var(--p5)}
+.board > .card.system:nth-of-type(3){background:var(--p1);border-color:var(--e1)}
+.board > .card.system:nth-of-type(3) .ctitle{color:var(--n1)}
+.board > .card.system:nth-of-type(6){background:var(--p2);border-color:var(--e2)}
+.board > .card.system:nth-of-type(6) .ctitle{color:var(--n2)}
+.board > .card.system:nth-of-type(9){background:var(--p3);border-color:var(--e3)}
+.board > .card.system:nth-of-type(9) .ctitle{color:var(--n3)}
+.board > .card.system:nth-of-type(12){background:var(--p4);border-color:var(--e4)}
+.board > .card.system:nth-of-type(12) .ctitle{color:var(--n4)}
+.board > .card.system:nth-of-type(15){background:var(--p5);border-color:var(--e5)}
+.board > .card.system:nth-of-type(15) .ctitle{color:var(--n5)}
 
 .card.system::before{content:'';position:absolute;left:-28px;top:50%;margin-top:-2px;
       width:28px;height:4px;background:var(--blue);border-radius:2px}

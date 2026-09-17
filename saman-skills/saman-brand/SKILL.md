@@ -37,24 +37,35 @@ sheet instead of a busy one.
 | **Bright** | `#F2506A` | node rings, the closing figure. The only thing that grabs. |
 | **Bright-deep** | `#B0243C` | chip text and small emphasis, where `Bright` would be too light to read. |
 
-**SOFT FILLS — the pastel family. Card backgrounds only.**
+**SOFT FAMILIES — five hues, three values each. Cards only.**
 
-| Token | Hex | |
-|---|---|---|
-| `--p1` | `#FFE4DE` | peach |
-| `--p2` | `#FFF2D6` | cream |
-| `--p3` | `#FFE9F3` | rose |
-| `--p4` | `#F4EBFF` | orchid |
-| `--p5` | `#E3F2FD` | pale sky — Material Blue 50, her own blue's family |
+| Family | fill | edge (border) | name (title) |
+|---|---|---|---|
+| peach | `#FFE4DE` | `#F6C0B4` | `#B23F1E` |
+| cream | `#FFF2D6` | `#F0D592` | `#8A5A00` |
+| rose | `#FFE9F3` | `#F4BFD8` | `#A81E68` |
+| orchid | `#F4EBFF` | `#D7C2F4` | `#5A2C9E` |
+| sky | `#E3F2FD` | `#B4D8F4` | `#0D47A1` |
 
-Cards rotate through the fills down a sheet. They are pale on purpose: at this value they
-read as **one family**, so the sheet counts as five colours, not ten. Saturate one and the
-count breaks.
+Cards rotate through the families down a sheet. **A card is always all three values from ONE
+family** — fill, its own border, its own title colour. Mixing families inside a card is what
+makes a pastel sheet look assembled rather than designed.
 
-**The three rules that hold it together:**
+**The tonal border is the craft move.** A pastel card with a grey hairline reads cheap. The
+same card bordered 2px in a deeper tone of its own hue reads considered. It is one CSS value
+and it is most of the difference between a good pastel sheet and a generic one.
+
+Every title tone clears 4.5:1 on its own fill, so a coloured card title is genuinely readable
+— it is hierarchy, not decoration.
+
+The fills stay pale on purpose: at this value the five read as **one family**, so a sheet
+counts as five colours, not fifteen. Saturate one fill and the count breaks.
+
+**The four rules that hold it together:**
 1. Bright never fills a card.
-2. A pastel never carries text and never touches the spine.
+2. A fill never carries body text and never touches the spine.
 3. Blue never leaves the spine.
+4. One family per card. Fill, edge and name always match.
 
 *(Her blue `#90CAF8` is Material Blue 200 — one digit from `#90CAF9`. That is why the Blue-50
 pale sky belongs in the fill set: it is literally her own colour's family.)*
@@ -305,8 +316,9 @@ These exist because each one is a specific way a sheet stops being hers.
 
 **Not somebody else's system**
 11. **No Object Frame.** The sheet is never drawn as a physical object — not a phone, a
-    folder, a receipt, a terminal window, a notebook. That is Ayan's signature and it is the
-    single fastest way to make her look derivative. Her sheet is a *line*, not a *thing*.
+    folder, a receipt, a terminal window, a notebook. That device already belongs to a large
+    account in an adjacent niche, and borrowing it is the fastest way to look derivative.
+    Her sheet is a *line*, not a *thing*.
 12. No terracotta, no orange, no deep navy ground pretending to be Ink. Her Ink is `#051D2F`
     and it is used sparingly on light, not as a dark canvas by default.
 13. No brand-coloured Pill Word in Blue — hers is Ink, and that inversion is the point.

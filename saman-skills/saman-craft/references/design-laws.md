@@ -62,10 +62,11 @@ the headline still fits, it is not a headline yet.
 **Why:** ragged left edges destroy the scan, which is the only thing a cheatsheet is for.
 **Fix:** left-align everything except a single figure in a closer.
 
-### 10. Nothing that looks like Ayan's system
+### 10. Nothing that reads as a neighbouring account's system
 **Fail:** an Object Frame (the sheet drawn as a phone, a folder, a terminal, a receipt),
 terracotta or orange, a navy ground by default, a brand-coloured pill word.
-**Why:** it is the fastest way to make her look derivative of a bigger account in the same niche.
+**Why:** each of those is the signature of a larger account in an adjacent niche. Borrowing one
+makes her look derivative of the thing she is competing with.
 **Fix:** her sheet is a **line**, not a **thing**. Her pill is Ink on light, and that inversion
 is deliberate.
 

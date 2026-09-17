@@ -111,8 +111,8 @@ The short version — any of these is an automatic fail:
 7. Emoji anywhere on the canvas
 8. A headline that could sit on anyone's sheet ("Powerful AI Tools You Should Know")
 9. Centre-aligned body text
-10. **Anything that looks like Ayan's system** — an Object Frame, terracotta, a drawn physical
-    object. Her sheet is a line, not a thing.
+10. **Anything that reads as a neighbouring account's system** — an Object Frame, terracotta,
+    a drawn physical object. Her sheet is a line, not a thing.
 
 ---
 

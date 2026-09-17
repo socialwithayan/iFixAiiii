@@ -39,6 +39,10 @@ Turn whatever she said into **one claim a founder can act on.**
 - Her audience is busy founders, not AI hobbyists. Every sheet answers *what do I do Monday*.
 - If the topic has no number, no verb and no outcome, sharpen it before going further.
 
+Idea bank, the eight content lanes and the method for generating new topics:
+**`references/topic-ideas.md`**. Rotate lanes, not just topics — four sheets from one lane
+makes a feed look narrow even when every sheet is good.
+
 Check the log (`references/shipped-log.md`) before starting. If she shipped something close in
 the last month, say so and offer a genuinely different angle rather than a near-duplicate.
 
@@ -83,6 +87,10 @@ Present A / B / C, name the frame up front, add a one-line recommendation and wh
 **Stop. She picks.** Do not build ahead of her answer.
 
 ## Stage 5 — Grey build  ← GATE 2
+
+Pick the component variants from `/saman-brand → references/style-kit.md` — header, card,
+node, chip and closer. One variant each. That table is what stops ten Rail sheets looking like
+the same sheet ten times.
 
 Build the structure with the brand stripped out, then:
 

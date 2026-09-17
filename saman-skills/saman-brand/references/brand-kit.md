@@ -27,6 +27,17 @@ needs a colour that is not here, the sheet is wrong.
   --ink-70:    #40566A;
   --ink-45:    #7D8D9C;
 
+  /* ---- BRIGHT: the one saturated colour. It points, nothing else does ---- */
+  --bright:      #F2506A;   /* node rings, the closing figure               */
+  --bright-deep: #B0243C;   /* chip text, small emphasis (4.5:1 on --p1)    */
+
+  /* ---- SOFT FILLS: the pastel family. Card backgrounds only ---- */
+  --p1: #FFE4DE;   /* peach   */
+  --p2: #FFF2D6;   /* cream   */
+  --p3: #FFE9F3;   /* rose    */
+  --p4: #F4EBFF;   /* orchid  */
+  --p5: #E3F2FD;   /* pale sky (Material Blue 50 — her blue's own family)   */
+
   /* ---- the only shadow ---- */
   --shadow:    0 2px 10px rgba(5,29,47,.07);
 
@@ -34,8 +45,8 @@ needs a colour that is not here, the sheet is wrong.
   --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
   --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
 
-  /* ---- radius ---- */
-  --r-card: 14px; --r-panel: 18px; --r-round: 999px;
+  /* ---- radius: soft. Nothing on her sheets has a hard corner ---- */
+  --r-card: 20px; --r-panel: 24px; --r-round: 999px;
 
   /* ---- stroke ---- */
   --w-hair: 1px; --w-ring: 3px; --w-spine: 4px;
@@ -82,6 +93,27 @@ loads and ship a sheet set in the fallback.
 Headline drops to 52px only when the line would otherwise wrap to three lines. Below 52px,
 cut words instead.
 
+## The palette in one picture
+
+```
+LOCKED           Sky #EBF6FF      Blue #90CAF8     Ink #051D2F
+   the ground       the spine        the type
+
+BRIGHT           #F2506A          #B0243C
+   points          rings, figure    chip text
+
+SOFT FILLS       #FFE4DE  #FFF2D6  #FFE9F3  #F4EBFF  #E3F2FD
+   card backgrounds only, never text, never the spine
+```
+
+**Counting colours.** The craft benchmark for this kind of sheet is 5–7 colours. Hers reads as
+five: ground, type, spine, bright, and the pastel family — because the five fills sit at the
+same value and register as one family, not five decisions. That only holds while they stay
+pale. A saturated fill breaks the count and the sheet starts to look busy.
+
+**Roles are not swappable.** Bright never fills a card. A pastel never carries text. Blue never
+leaves the spine. That separation is what keeps ten named colours reading as five.
+
 ## The Ink Pill
 
 ```css
@@ -120,10 +152,25 @@ All nodes on one sheet are the same size. Always.
 
 ## Cards and panels
 
+Cards rotate through the pastel fills down a sheet. Use `--paper` when the content needs to
+stay neutral (dense tables, a matrix) and the pastels when the sheet wants warmth.
+
 ```css
-.card{background:var(--paper); border-radius:var(--r-card);
-      border:var(--w-hair) solid var(--blue-pale);
+.card{background:var(--p1); border-radius:var(--r-card);
+      border:var(--w-hair) solid rgba(5,29,47,.07);
       box-shadow:var(--shadow); padding:var(--s5)}
+.rail > .card:nth-of-type(1){background:var(--p1)}
+.rail > .card:nth-of-type(2){background:var(--p2)}
+.rail > .card:nth-of-type(3){background:var(--p3)}
+.rail > .card:nth-of-type(4){background:var(--p4)}
+.rail > .card:nth-of-type(5){background:var(--p5)}
+
+/* BRIGHT does the pointing, and only these three things */
+.node{border-color:var(--bright)}
+.chip{background:var(--p1); color:var(--bright-deep)}
+.verdict .vnum{color:var(--bright)}
+
+.card--neutral{background:var(--paper); border-color:var(--blue-pale)}
 .panel{background:var(--paper); border-radius:var(--r-panel);
        border:var(--w-hair) solid var(--blue-pale); padding:var(--s6)}
 .well{background:var(--sky-deep); border-radius:var(--r-card); padding:var(--s4)}

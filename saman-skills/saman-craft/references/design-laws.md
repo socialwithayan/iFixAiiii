@@ -23,11 +23,18 @@ count — or it does not appear. No icons at all is a correct answer.
 **Why:** her system gets its depth from one hairline and one shadow. Everything else is 2021.
 **Fix:** `--shadow` on Paper panels. Nothing else. Ever.
 
-### 4. No fifth colour
-**Fail:** a green tick, a red cross, an amber warning, an accent picked to "add energy".
-**Why:** four tokens is the discipline that makes forty sheets read as one brand.
-**Fix:** state is carried by weight and fill, not hue. The system way is Paper and ringed; the
-manual way is a flat Sky-deep well. That reads instantly without a second colour.
+### 4. No colour outside the named set, and no swapped roles
+**Fail:** a hex that is not one of the three locked, the two brights, or the five fills. Or a
+role swap — Bright filling a card, a pastel carrying text, Blue leaving the spine.
+**Why:** the set is deliberately wide enough to be warm and narrow enough to stay one brand.
+It only reads as five colours while the fills stay pale and the roles stay separate. A
+saturated fill or a Bright card breaks both at once.
+**Fix:** meaning is carried by weight, fill and position — not by inventing a hue. The system
+way is a warm pastel card; the manual way is a flat Sky-deep well. That contrast reads
+instantly with no new colour.
+
+**Count it:** at most one Bright per role on a sheet — rings, chip text, closing figure. Three
+places. A fourth is decoration.
 
 ### 5. No type below 12px, no more than four sizes
 **Fail:** an 11px caption. Seven different sizes on one canvas.

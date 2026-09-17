@@ -37,7 +37,7 @@ python -m playwright install chromium
 pip install imageio-ffmpeg     # optional: adds the MP4. GIF works without it.
 ```
 
-## 3. Her avatar
+## 3. Her avatar  ← needs her photo
 
 The bundle ships an "SA" monogram placeholder. To use her real photo, replace this file:
 
@@ -106,10 +106,10 @@ python3 ~/.claude/skills/saman-design/scripts/build.py   sheet.html motion   # G
 ## What is in the box
 
 ```
-saman-brand/   SKILL.md · brand-kit.md · spine-frames.md · design-note-format.md
-               assets/ (Inter x5, avatar)
+saman-brand/   SKILL.md · brand-kit.md · spine-frames.md · style-kit.md
+               design-note-format.md · assets/ (Inter x5, avatar)
 saman-design/  SKILL.md · build.py · greygate.py · 2 templates + specs for 8 more
-               voice.md · post-formats.md · shipped-log.md · assets/
-saman-craft/   SKILL.md · autofix.py · win-matrix.md · design-laws.md · fix-recipes.md
-               assets/
+               topic-ideas.md · voice.md · post-formats.md · shipped-log.md · assets/
+saman-craft/   SKILL.md · autofix.py · win-matrix.md · design-laws.md
+               fix-recipes.md · craft-benchmarks.md · assets/
 ```

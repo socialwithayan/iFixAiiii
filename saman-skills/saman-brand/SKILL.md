@@ -15,17 +15,49 @@ is wrong, not the law.
 
 ---
 
-## 1. The four tokens
+## 1. The palette
 
-Everything on every sheet is made of these four things. There is no fifth colour and no
-second typeface.
+Three locked colours, one bright, five soft fills. Every colour has exactly one job, and the
+jobs are not swappable — that separation is what keeps ten named values reading as a simple
+sheet instead of a busy one.
 
-| Token | Hex | What it is for |
+**LOCKED — these never change.**
+
+| Token | Hex | Job |
 |---|---|---|
 | **Sky** | `#EBF6FF` | the ground. The canvas, the page, the air between things. |
-| **Blue** | `#90CAF8` | **structure only.** The spine, rules, borders, node rings, arrows. |
-| **Ink** | `#051D2F` | type, and the one dark element per sheet. |
-| **Paper** | `#FFFFFF` | panel fills that sit on Sky. Not a brand colour — a surface. |
+| **Blue** | `#90CAF8` | **the spine, and nothing else.** Structure, never meaning. |
+| **Ink** | `#051D2F` | type, the pill, the closer. |
+| **Paper** | `#FFFFFF` | a neutral surface when content needs to stay plain. Not a brand colour. |
+
+**BRIGHT — the one saturated colour on the sheet. It points.**
+
+| Token | Hex | Job |
+|---|---|---|
+| **Bright** | `#F2506A` | node rings, the closing figure. The only thing that grabs. |
+| **Bright-deep** | `#B0243C` | chip text and small emphasis, where `Bright` would be too light to read. |
+
+**SOFT FILLS — the pastel family. Card backgrounds only.**
+
+| Token | Hex | |
+|---|---|---|
+| `--p1` | `#FFE4DE` | peach |
+| `--p2` | `#FFF2D6` | cream |
+| `--p3` | `#FFE9F3` | rose |
+| `--p4` | `#F4EBFF` | orchid |
+| `--p5` | `#E3F2FD` | pale sky — Material Blue 50, her own blue's family |
+
+Cards rotate through the fills down a sheet. They are pale on purpose: at this value they
+read as **one family**, so the sheet counts as five colours, not ten. Saturate one and the
+count breaks.
+
+**The three rules that hold it together:**
+1. Bright never fills a card.
+2. A pastel never carries text and never touches the spine.
+3. Blue never leaves the spine.
+
+*(Her blue `#90CAF8` is Material Blue 200 — one digit from `#90CAF9`. That is why the Blue-50
+pale sky belongs in the fill set: it is literally her own colour's family.)*
 
 Derived tints. Use these named values, never eyeball a new one:
 
@@ -104,6 +136,9 @@ The 7 Systems That Save Founders [ 10 HOURS ] A Week
 Pill spec: `--ink` background, `--sky` text, radius 999px, padding `.08em .42em`, same font
 size and weight as the headline around it, letter-spacing `-0.01em`.
 
+**The pill is Ink, never Bright.** Two things competing to be the loudest thing on a sheet
+means neither wins. The pill owns the headline; Bright owns the body.
+
 **The pill is not a highlighter.** It does not appear in body text, in card titles, or twice.
 If a second phrase needs emphasis, it gets `--ink` weight 700 and no pill.
 
@@ -115,10 +150,11 @@ Measured by area of the finished canvas:
 
 - **60% Sky** — the ground. Air is the brand. A cramped Saman sheet is off-brand even if every
   colour is right.
-- **30% Paper** — the panels the content actually lives in.
-- **10% Ink** — type, the pill, the footer, numbered nodes.
-- **Blue is not in the ratio.** It is structure: strokes, rings, hairlines. If Blue is filling
-  a large area, you have used it as a colour instead of as a line. Fix it.
+- **30% fills** — the pastel cards (or Paper, when the content wants to stay neutral).
+- **10% Ink** — type, the pill, the footer, the closer.
+- **Blue and Bright are not in the ratio.** Blue is structure: strokes, rings, hairlines.
+  Bright is a pointer: three small things and no more. If either is filling a large area, it
+  has stopped doing its job. Fix it.
 
 Practical floor: at least 90px of clear Sky across the top of the content area, and at least
 40px of Sky gutter on the left and right of every card.
@@ -167,7 +203,7 @@ second family, letter-spacing on body text, all-caps on anything longer than fou
 
 ```
 Spacing scale (px):   4 · 8 · 12 · 16 · 24 · 32 · 48 · 64      (nothing in between)
-Radius:               card 14 · panel 18 · node 999 · pill 999
+Radius:               card 20 · panel 24 · node 999 · pill 999   (soft — no hard corners)
 Stroke:               hairline 1 (--blue-pale) · spine 4 (--blue) · node ring 3 (--blue)
 Canvas margins:       56 left/right · 48 top · footer pinned at y=1306
 ```
@@ -251,7 +287,10 @@ The full format and worked examples: **`references/design-note-format.md`**.
 These exist because each one is a specific way a sheet stops being hers.
 
 **Brand**
-1. No colour outside the four tokens and their named tints. No red, no green, no gradient.
+1. No colour outside the named set — three locked, one bright, five fills, and their tints.
+   No gradient, ever.
+1a. No swapped roles. Bright never fills a card, a pastel never carries text, Blue never
+   leaves the spine.
 2. No second typeface. Inter does all of it.
 3. Blue never carries text, and never fills a large area.
 4. Never two Ink Pills. Never zero.
@@ -286,5 +325,6 @@ These exist because each one is a specific way a sheet stops being hers.
 - Building a sheet → `/saman-design` (it reads this file first, then the frame bank)
 - Scoring or fixing a sheet → `/saman-craft` (it enforces sections 2, 4, 6, 7, 11)
 - Picking a layout → `references/spine-frames.md`
+- Picking how the parts look → `references/style-kit.md`
 - Writing the note she approves → `references/design-note-format.md`
 - Every token, in copy-paste CSS → `references/brand-kit.md`

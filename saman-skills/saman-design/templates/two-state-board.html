@@ -25,8 +25,10 @@
   --ink:#051D2F; --ink-70:#40566A; --ink-45:#7D8D9C;
   --shadow:0 2px 10px rgba(5,29,47,.07);
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
-  --r-card:14px; --r-panel:18px; --r-round:999px;
+  --r-card:20px; --r-panel:24px; --r-round:999px;
   --w-hair:1px; --w-ring:3px; --w-spine:4px;
+  --bright:#F2506A; --bright-deep:#B0243C;
+  --p1:#FFE4DE; --p2:#FFF2D6; --p3:#FFE9F3; --p4:#F4EBFF; --p5:#E3F2FD;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#fff;font-family:Inter,system-ui,sans-serif;
@@ -62,8 +64,14 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
       width:28px;height:4px;background:var(--blue);border-radius:2px}
 
 /* right: the system way — Paper, ringed, lifted */
-.card.system{background:var(--paper);border:var(--w-hair) solid var(--blue-pale);
+.card.system{background:var(--p1);border:var(--w-hair) solid rgba(5,29,47,.07);
       box-shadow:var(--shadow)}
+.board > .card.system:nth-of-type(3){background:var(--p1)}
+.board > .card.system:nth-of-type(6){background:var(--p2)}
+.board > .card.system:nth-of-type(9){background:var(--p3)}
+.board > .card.system:nth-of-type(12){background:var(--p4)}
+.board > .card.system:nth-of-type(15){background:var(--p5)}
+
 .card.system::before{content:'';position:absolute;left:-28px;top:50%;margin-top:-2px;
       width:28px;height:4px;background:var(--blue);border-radius:2px}
 
@@ -74,6 +82,7 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
 /* ---- the divider node ---- */
 .vs{position:absolute;left:540px;top:300px;margin:-16px 0 0 -16px;width:32px;height:32px;
     border-radius:var(--r-round);background:var(--ink);color:var(--sky);z-index:2;
+    border:var(--w-ring) solid var(--bright);
     display:grid;place-items:center;font:700 13px/1 Inter;letter-spacing:.04em}
 
 /* ---- closer ---- */
@@ -81,7 +90,7 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
          border-radius:var(--r-panel);padding:var(--s4) var(--s6);display:flex;
          align-items:center;justify-content:space-between;margin-top:var(--s1)}
 .verdict .vlab{font:500 16px/1.4 Inter;color:#B9CBD8;max-width:640px}
-.verdict .vnum{font:800 40px/1 Inter;letter-spacing:-.03em;color:var(--sky)}
+.verdict .vnum{font:800 40px/1 Inter;letter-spacing:-.03em;color:var(--bright)}
 
 /* ---- footer ---- */
 .footer{position:absolute;top:1306px;left:0;right:0;height:44px;background:var(--ink);

@@ -60,6 +60,13 @@ fix that makes a sheet unreadable at feed size.
 
 ---
 
+## Sanity-check the four numbers
+
+Before the matrix, check the sheet against the shipped-work benchmarks in
+**`references/craft-benchmarks.md`**: movers (1–2, chrome still), words (180–320), colour
+families (5–7), loop (under 8s), and frame one not being blank. A sheet far outside a band
+usually has its real problem there.
+
 ## Then score the win matrix
 
 Twelve aspects, scored 1–5 on the rendered PNG. Full criteria and what each score looks like:
@@ -73,7 +80,7 @@ Twelve aspects, scored 1–5 on the rendered PNG. Full criteria and what each sc
 | 4 | Contrast | Does every piece of text clear its floor? Is Blue carrying any meaning? |
 | 5 | Type rhythm | Consistent scale, no orphan line, no cramped wrap? |
 | 6 | Alignment | Does everything sit on the grid, or is something 3px out? |
-| 7 | Colour ratio | 60 Sky / 30 Paper / 10 Ink, with Blue as structure only? |
+| 7 | Colour ratio | 60 Sky / 30 fills / 10 Ink? Blue on the spine only, Bright in three places? |
 | 8 | Icon discipline | Does every icon add information, or restate the title? |
 | 9 | Edge safety | Nothing clipped, nothing crowding the margin? |
 | 10 | Motion legibility | Does the spine draw read at feed size, at a glance? |
@@ -98,7 +105,7 @@ The short version — any of these is an automatic fail:
 1. Cards floating with no spine
 2. An icon on every card that just repeats the title
 3. Gradients, glass, glow, or a second shadow
-4. A colour that is not in the four tokens
+4. A colour outside the named set, or a swapped role (Bright filling, pastel as text)
 5. Type below 12px, or more than four sizes on one sheet
 6. Filler cards — a seventh item that says nothing
 7. Emoji anywhere on the canvas

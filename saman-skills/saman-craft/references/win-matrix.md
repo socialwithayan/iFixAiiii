@@ -48,10 +48,15 @@ Where does the eye go, in what order?
 
 *Drop a straight edge down the card column and down the spine. Both should be exact.*
 
-### 7. Colour ratio
-- **5** — 60 Sky / 30 Paper / 10 Ink, Blue used only as structure.
-- **4** — Ink creeping past 10%.
-- **3 or below** — Blue filling an area, or a fifth colour present. **Fail.**
+### 7. Colour ratio and roles
+- **5** — 60 Sky / 30 fills / 10 Ink. Blue only on the spine. Bright in at most three places
+  (rings, chip text, closing figure). Every fill pale enough that the set reads as one family.
+- **4** — Ink creeping past 10%, or a fourth use of Bright.
+- **3 or below** — Blue filling an area, Bright filling a card, a pastel carrying text, or a
+  hex outside the named set. **Fail.**
+
+*Squint at it: you should see five colours, not ten. If the cards read as five separate
+decisions rather than one family, a fill is too saturated.*
 
 ### 8. Icon discipline
 - **5** — every icon adds information, or there are none at all.

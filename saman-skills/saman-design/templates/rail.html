@@ -28,8 +28,10 @@
   --ink:#051D2F; --ink-70:#40566A; --ink-45:#7D8D9C;
   --shadow:0 2px 10px rgba(5,29,47,.07);
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
-  --r-card:14px; --r-panel:18px; --r-round:999px;
+  --r-card:20px; --r-panel:24px; --r-round:999px;
   --w-hair:1px; --w-ring:3px; --w-spine:4px;
+  --bright:#F2506A; --bright-deep:#B0243C;
+  --p1:#FFE4DE; --p2:#FFF2D6; --p3:#FFE9F3; --p4:#F4EBFF; --p5:#E3F2FD;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#fff;font-family:Inter,system-ui,sans-serif;
@@ -51,8 +53,8 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
 /* ---- rail ---- */
 .rail{margin-top:var(--s4);margin-left:92px;   /* clears the spine at x=100 */
       display:flex;flex-direction:column;gap:var(--s4)}
-.card{position:relative;height:156px;background:var(--paper);border-radius:var(--r-card);
-      border:var(--w-hair) solid var(--blue-pale);box-shadow:var(--shadow);
+.card{position:relative;height:156px;background:var(--p1);border-radius:var(--r-card);
+      border:var(--w-hair) solid rgba(5,29,47,.07);box-shadow:var(--shadow);
       padding:var(--s5) var(--s6);display:flex;flex-direction:column;
       justify-content:center}
 /* the stub: card -> spine. Drawn by the card, so it follows the card. */
@@ -60,21 +62,28 @@ body{background:#fff;font-family:Inter,system-ui,sans-serif;
       margin-top:-2px;width:34px;height:4px;background:var(--blue);border-radius:2px}
 .node{position:absolute;left:-62px;top:50%;margin-top:-14px;  /* centre lands on x=100 */
       width:28px;height:28px;
-      border-radius:var(--r-round);background:var(--ink);border:var(--w-ring) solid var(--ink);
+      border-radius:var(--r-round);background:var(--ink);border:var(--w-ring) solid var(--bright);
       display:grid;place-items:center;font:700 15px/1 Inter;color:var(--sky)}
 .ctitle{font:600 20px/1.3 Inter;letter-spacing:-.01em;color:var(--ink)}
 .body{font:400 16px/1.5 Inter;color:var(--ink-70);margin-top:var(--s2)}
 .saves{margin-top:var(--s3);align-self:flex-start;font:600 13px/1 Inter;letter-spacing:.04em;
-       text-transform:uppercase;color:var(--ink);background:var(--sky-deep);
+       text-transform:uppercase;color:var(--bright-deep);background:var(--paper);
        border-radius:var(--r-round);padding:7px 12px}
+
+/* cards rotate through the pastel family — pale enough to read as one family */
+.rail > .card:nth-of-type(1){background:var(--p1)}
+.rail > .card:nth-of-type(2){background:var(--p2)}
+.rail > .card:nth-of-type(3){background:var(--p3)}
+.rail > .card:nth-of-type(4){background:var(--p4)}
+.rail > .card:nth-of-type(5){background:var(--p5)}
 
 /* ---- closer ---- */
 .verdict{position:relative;height:110px;background:var(--ink);border-radius:var(--r-panel);
          padding:var(--s5) var(--s6);display:flex;align-items:center;
          justify-content:space-between}
 .verdict .vlab{font:500 16px/1.4 Inter;color:#B9CBD8;max-width:560px}
-.verdict .vnum{font:800 46px/1 Inter;letter-spacing:-.03em;color:var(--sky)}
-.verdict .node{background:var(--paper);border-color:var(--blue)}
+.verdict .vnum{font:800 46px/1 Inter;letter-spacing:-.03em;color:var(--bright)}
+.verdict .node{background:var(--paper);border-color:var(--bright)}
 
 /* ---- footer ---- */
 .footer{position:absolute;top:1306px;left:0;right:0;height:44px;background:var(--ink);

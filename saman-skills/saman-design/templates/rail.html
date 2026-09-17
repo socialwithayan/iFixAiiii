@@ -1,0 +1,227 @@
+<!doctype html>
+<!--
+  SAMAN · SPINE FRAME 01 — RAIL
+  The workhorse. One vertical line, nodes stepping right, Ink verdict at the end.
+
+  Copy this file, swap the content, keep the skeleton. The class names
+  (.canvas .spine .content .rowband .card .node .pill .footer) are the contract
+  the build, grey gate and autofix scripts measure by — renaming them silently
+  loses the geometry audit.
+
+  Sample copy below is placeholder. Replace it with researched, fact-checked
+  content before anything ships.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Saman · Rail</title>
+<style>
+@font-face{font-family:Inter;font-weight:400;font-style:normal;font-display:block;src:url({{INTER_400}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:500;font-style:normal;font-display:block;src:url({{INTER_500}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:600;font-style:normal;font-display:block;src:url({{INTER_600}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:700;font-style:normal;font-display:block;src:url({{INTER_700}}) format('woff2')}
+@font-face{font-family:Inter;font-weight:800;font-style:normal;font-display:block;src:url({{INTER_800}}) format('woff2')}
+
+:root{
+  --sky:#EBF6FF; --sky-deep:#DCEEFC; --paper:#FFFFFF;
+  --blue:#90CAF8; --blue-mid:#6FB6F0; --blue-pale:#C9E4FB;
+  --ink:#051D2F; --ink-70:#40566A; --ink-45:#7D8D9C;
+  --shadow:0 2px 10px rgba(5,29,47,.07);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+  --r-card:20px; --r-panel:24px; --r-round:999px;
+  --w-hair:1px; --w-ring:3px; --w-spine:4px;
+  --bright:#F2506A; --bright-deep:#B0243C;
+  --p1:#FFE4DE; --e1:#F6C0B4; --n1:#B23F1E;
+  --p2:#FFF2D6; --e2:#F0D592; --n2:#8A5A00;
+  --p3:#FFE9F3; --e3:#F4BFD8; --n3:#A81E68;
+  --p4:#F4EBFF; --e4:#D7C2F4; --n4:#5A2C9E;
+  --p5:#E3F2FD; --e5:#B4D8F4; --n5:#0D47A1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:Inter,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--sky)}
+.spine{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.spine path{fill:none;stroke:var(--blue);stroke-width:var(--w-spine);
+            stroke-linecap:round;stroke-linejoin:round}
+.content{position:relative;z-index:1;padding:48px 56px 0}
+.rowband{min-height:var(--rh)}
+
+/* ---- head ---- */
+.h1{font:800 56px/1.16 Inter;letter-spacing:-.025em;color:var(--ink)}
+.pill{background:var(--ink);color:var(--sky);border-radius:var(--r-round);
+      padding:.08em .42em;letter-spacing:-.01em;white-space:nowrap}
+.deck{font:500 20px/1.45 Inter;letter-spacing:-.005em;color:var(--ink-70);margin-top:var(--s4)}
+
+/* ---- rail ---- */
+.rail{margin-top:var(--s4);margin-left:92px;   /* clears the spine at x=100 */
+      display:flex;flex-direction:column;gap:var(--s4)}
+.card{position:relative;height:156px;background:var(--p1);border-radius:var(--r-card);
+      border:2px solid var(--e1);box-shadow:var(--shadow);
+      padding:var(--s5) var(--s6);display:flex;flex-direction:column;
+      justify-content:center}
+/* the stub: card -> spine. Drawn by the card, so it follows the card. */
+.card::before,.verdict::before{content:'';position:absolute;left:-34px;top:50%;
+      margin-top:-2px;width:34px;height:4px;background:var(--blue);border-radius:2px}
+.node{position:absolute;left:-62px;top:50%;margin-top:-14px;  /* centre lands on x=100 */
+      width:28px;height:28px;
+      border-radius:var(--r-round);background:var(--ink);border:var(--w-ring) solid var(--bright);
+      display:grid;place-items:center;font:700 15px/1 Inter;color:var(--sky)}
+.ctitle{font:600 20px/1.3 Inter;letter-spacing:-.01em;color:var(--ink)}
+.body{font:400 16px/1.5 Inter;color:var(--ink-70);margin-top:var(--s2)}
+.saves{margin-top:var(--s3);align-self:flex-start;font:600 13px/1 Inter;letter-spacing:.04em;
+       text-transform:uppercase;color:var(--bright-deep);background:var(--paper);
+       border-radius:var(--r-round);padding:7px 12px}
+
+/* one family per card: fill, its own border, its own title tone.
+   The tonal border is the craft move — a grey hairline reads cheap. */
+.rail > .card:nth-of-type(1){background:var(--p1);border-color:var(--e1)}
+.rail > .card:nth-of-type(1) .ctitle{color:var(--n1)}
+.rail > .card:nth-of-type(2){background:var(--p2);border-color:var(--e2)}
+.rail > .card:nth-of-type(2) .ctitle{color:var(--n2)}
+.rail > .card:nth-of-type(3){background:var(--p3);border-color:var(--e3)}
+.rail > .card:nth-of-type(3) .ctitle{color:var(--n3)}
+.rail > .card:nth-of-type(4){background:var(--p4);border-color:var(--e4)}
+.rail > .card:nth-of-type(4) .ctitle{color:var(--n4)}
+.rail > .card:nth-of-type(5){background:var(--p5);border-color:var(--e5)}
+.rail > .card:nth-of-type(5) .ctitle{color:var(--n5)}
+
+/* ---- closer ---- */
+.verdict{position:relative;height:110px;background:var(--ink);border-radius:var(--r-panel);
+         padding:var(--s5) var(--s6);display:flex;align-items:center;
+         justify-content:space-between}
+.verdict .vlab{font:500 16px/1.4 Inter;color:#B9CBD8;max-width:560px}
+.verdict .vnum{font:800 46px/1 Inter;letter-spacing:-.03em;color:var(--bright)}
+.verdict .node{background:var(--paper);border-color:var(--bright)}
+
+/* ---- footer ---- */
+.footer{position:absolute;top:1306px;left:0;right:0;height:44px;background:var(--ink);
+        display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:2}
+.footer .who{display:flex;align-items:center;gap:10px}
+.footer img{width:28px;height:28px;border-radius:var(--r-round);display:block}
+.footer .name{font:600 15px/1 Inter;color:var(--sky)}
+.footer .handle{font:600 15px/1 Inter;color:var(--blue)}
+</style>
+</head>
+<body>
+
+<div class="canvas sky">
+
+  <!-- THE SPINE: one path, enters under the deck, passes every node, ends in the verdict -->
+  <svg class="spine" viewBox="0 0 1080 1350" preserveAspectRatio="none">
+    <path id="spine" d="M 100 300 L 100 1179"/>
+  </svg>
+
+  <div class="content">
+
+    <div class="rowband" id="head" style="--rh:200px">
+      <h1 class="h1">5 AI Systems That Save Founders <span class="pill">10 HOURS</span> A Week</h1>
+      <p class="deck">Not more tools. The same five workflows, running without you.</p>
+    </div>
+
+    <div class="rowband" id="body" style="--rh:970px">
+      <div class="rail">
+
+        <div class="card">
+          <div class="node">1</div>
+          <div class="ctitle">Inbox triage and first drafts</div>
+          <div class="body">Claude reads the overnight inbox, sorts by what actually needs you,
+            and drafts the replies you always write anyway.</div>
+          <div class="saves">saves 2.5 hrs</div>
+        </div>
+
+        <div class="card">
+          <div class="node">2</div>
+          <div class="ctitle">Meeting notes to owned actions</div>
+          <div class="body">Every call transcript becomes a short decision log with named owners
+            and dates, in your tracker before the next call starts.</div>
+          <div class="saves">saves 1.5 hrs</div>
+        </div>
+
+        <div class="card">
+          <div class="node">3</div>
+          <div class="ctitle">One idea, every channel</div>
+          <div class="body">A single long post is cut into the thread, the carousel and the
+            newsletter section, each rewritten for the platform, not pasted.</div>
+          <div class="saves">saves 2 hrs</div>
+        </div>
+
+        <div class="card">
+          <div class="node">4</div>
+          <div class="ctitle">The weekly report, assembled</div>
+          <div class="body">Numbers pulled from the tools you already pay for, written up in the
+            same shape every Friday so your team reads it in two minutes.</div>
+          <div class="saves">saves 2 hrs</div>
+        </div>
+
+        <div class="card">
+          <div class="node">5</div>
+          <div class="ctitle">First-pass candidate screening</div>
+          <div class="body">Applications scored against the role you actually wrote, with the
+            reasoning attached, so you only read the shortlist.</div>
+          <div class="saves">saves 2 hrs</div>
+        </div>
+
+        <div class="verdict">
+          <div class="node"></div>
+          <div class="vlab">Five systems, built once. That is a working day back, every week,
+            without hiring anyone.</div>
+          <div class="vnum">10 hrs</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="who">
+      <img src="{{AVATAR}}" alt="">
+      <span class="name">Follow Saman Ahmed For More</span>
+    </div>
+    <span class="handle">@ScaleWthAI</span>
+  </div>
+</div>
+
+<script>
+/* MOTION — stepped by the renderer, never CSS keyframes.
+   spine draws 0-36%, nodes land in order 36-85%, verdict 85-100%. */
+(function(){
+  const path   = document.getElementById('spine');
+  const LEN    = path.getTotalLength();
+  const cards  = [...document.querySelectorAll('.rail > .card')];
+  const nodes  = [...document.querySelectorAll('.node')];
+  const verdict= document.querySelector('.verdict');
+  const ease   = t => 1 - Math.pow(1 - t, 3);
+  const cl     = t => Math.max(0, Math.min(1, t));
+
+  path.style.strokeDasharray = LEN;
+
+  window.renderFrame = function(t){
+    // 1. the line draws itself
+    const draw = cl(t / 0.36);
+    path.style.strokeDashoffset = LEN * (1 - ease(draw));
+
+    // 2. each node lands, and its card arrives with it
+    cards.forEach((card, i) => {
+      const start = 0.36 + i * 0.085;
+      const p = cl((t - start) / 0.13);
+      card.style.opacity   = p;
+      card.style.transform = `translateX(${(1 - ease(p)) * 26}px)`;
+      const n = nodes[i];
+      if (n){ n.style.opacity = p; n.style.transform = `scale(${0.8 + 0.2 * ease(p)})`; }
+    });
+
+    // 3. the verdict closes it
+    const v = cl((t - 0.85) / 0.15);
+    verdict.style.opacity   = v;
+    verdict.style.transform = `translateY(${(1 - ease(v)) * 18}px)`;
+    const vn = nodes[nodes.length - 1];
+    if (vn){ vn.style.opacity = v; vn.style.transform = `scale(${0.8 + 0.2 * ease(v)})`; }
+  };
+
+  window.renderFrame(0);
+})();
+</script>
+</body>
+</html>

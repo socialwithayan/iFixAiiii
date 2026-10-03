@@ -1,16 +1,21 @@
 <!doctype html>
 <!--
-  JAVERIYA · FRAME 02 — VERSUS
-  Most people on the left, the top 10% on the right. The left is dimmed on
-  purpose. Exactly one right-hand card is lit: the single change that closes
-  the biggest gap.
+  JAVERIYA · FRAME 08 — CHECKLIST
+  Slim rows on a dark stage, one check per row. Exactly one row is lit:
+  the check to fix first.
 
-  Class names are the contract the scripts measure by. Sample copy is placeholder.
+  Class names are the contract the scripts measure by.
+
+  This file ships with real, fact-checked copy (a LinkedIn profile audit),
+  sources checked 2026-10: headline 220 chars with ~60-70 visible in search,
+  comments and invites; About 2,600 chars with ~300 before "see more";
+  banner 1584x396 with the photo over the lower left; photo 400x400, shown
+  as a circle. Re-check the numbers before reusing it — LinkedIn changes them.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Javeriya · Versus</title>
+<title>Javeriya · Checklist</title>
 <style>
 @font-face{font-family:Geist;font-weight:400;font-style:normal;font-display:block;src:url({{GEIST_400}}) format('woff2')}
 @font-face{font-family:Geist;font-weight:500;font-style:normal;font-display:block;src:url({{GEIST_500}}) format('woff2')}
@@ -37,8 +42,8 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
 
 .canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--night)}
 .canvas::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(60% 45% at 100% 60%,rgba(214,8,2,.20),transparent 70%),
-             radial-gradient(40% 28% at 0% 0%,rgba(253,79,2,.07),transparent 70%)}
+  background:radial-gradient(65% 40% at 100% 38%,rgba(214,8,2,.20),transparent 70%),
+             radial-gradient(45% 30% at 0% 0%,rgba(253,79,2,.07),transparent 70%)}
 .content{position:relative;z-index:1;padding:52px 56px 0}
 .rowband{min-height:var(--rh)}
 
@@ -52,30 +57,26 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
       padding-right:.08em}
 .deck{font:400 20px/1.45 Geist;color:var(--white-70);margin-top:var(--s4)}
 
-/* ---- the two columns ---- */
-.labels,.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
-.labels{margin-top:var(--s2)}
-.lab{font:700 13px/1 Geist;letter-spacing:.14em;text-transform:uppercase;color:var(--white-45);
-     padding:0 4px 12px}
-.lab.win{color:var(--ember)}
-.board{row-gap:14px}
-.card{position:relative;height:150px;border-radius:var(--r-card);padding:20px 24px;
-      display:flex;flex-direction:column;justify-content:center}
-.card.quiet{background:transparent;border:1px dashed rgba(255,255,255,.12)}
-.card.quiet .ctitle{color:var(--white-45);font-weight:500}
-.card.quiet .body{color:#6E6965}
-.card.win{background:var(--char);border:1px solid var(--line)}
-.ctitle{font:600 21px/1.25 Geist;letter-spacing:-.02em;color:var(--white)}
-.body{font:400 15px/1.5 Geist;color:var(--white-70);margin-top:6px}
+/* ---- the checklist ---- */
+.list{display:flex;flex-direction:column;gap:10px;margin-top:var(--s2)}
+.card{position:relative;height:96px;background:var(--char);border:1px solid var(--line);
+      border-radius:var(--r-card);padding:0 26px;display:grid;
+      grid-template-columns:30px 262px minmax(0,1fr);column-gap:20px;align-items:center}
+.chk{width:30px;height:30px;border-radius:var(--r-round);border:1.5px solid rgba(255,255,255,.22);
+     display:grid;place-items:center;font:600 13px/1 Geist;color:var(--white-45)}
+.ctitle{font:600 19px/1.25 Geist;letter-spacing:-.015em;color:var(--white)}
+.body{font:400 15px/1.45 Geist;color:var(--white-70)}
+.body b{font-weight:600;color:var(--white)}
 
 /* THE SPOTLIGHT — exactly one per sheet */
 .card.spotlight{background:var(--fire-lit);border-color:transparent;box-shadow:var(--glow)}
-.card.spotlight .ctitle,.card.spotlight .body{color:#fff}
-.tag{position:absolute;top:16px;right:16px;background:var(--night);color:#fff;border-radius:var(--r-round);
-     font:700 12px/1 Geist;letter-spacing:.12em;text-transform:uppercase;padding:7px 11px}
+.card.spotlight .chk{background:#fff;border-color:#fff;color:var(--fire-red)}
+.card.spotlight .ctitle,.card.spotlight .body,.card.spotlight .body b{color:#fff}
+.lbl{display:block;font:700 12px/1 Geist;letter-spacing:.14em;text-transform:uppercase;
+     color:#fff;opacity:.85;margin-bottom:7px}
 
 /* ---- closer ---- */
-.closer{margin-top:18px;height:104px;background:var(--char-2);border:1px solid var(--line);
+.closer{margin-top:16px;height:100px;background:var(--char-2);border:1px solid var(--line);
         border-radius:var(--r-panel);padding:0 32px;display:flex;align-items:center;
         justify-content:space-between}
 .closer .clab{font:500 18px/1.4 Geist;color:var(--white-70);max-width:640px}
@@ -101,69 +102,67 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
 <div class="canvas">
   <div class="content">
 
-    <div class="rowband" id="head" style="--rh:262px">
-      <span class="pill">Same platform. Different results.</span>
-      <h1 class="h1"><b>Most People Post.</b> The Top 10% Get <span class="fire">Chosen.</span></h1>
-      <p class="deck">Five habits that separate a busy feed from a profile people DM.</p>
+    <div class="rowband" id="head" style="--rh:236px">
+      <span class="pill">Fix this before you post again</span>
+      <h1 class="h1"><b>Your Profile Is A Landing Page.</b> Make It <span class="fire">Convert.</span></h1>
+      <p class="deck">Your posts send people here. These 8 checks decide if they stay.</p>
     </div>
 
-    <div class="rowband" id="body" style="--rh:930px">
-      <div class="labels">
-        <div class="lab">Most people</div>
-        <div class="lab win">The top 10%</div>
-      </div>
-      <div class="board">
+    <div class="rowband" id="body" style="--rh:960px">
+      <div class="list">
 
-        <div class="card quiet">
-          <div class="ctitle">Post when inspired</div>
-          <div class="body">Three posts in a good week, then silence for a month.</div>
-        </div>
-        <div class="card win">
-          <div class="ctitle">Post on a system</div>
-          <div class="body">One idea a week, drafted with AI, queued before Monday.</div>
+        <div class="card">
+          <div class="chk">1</div>
+          <div class="ctitle">Banner works on mobile</div>
+          <div class="body"><b>1584 × 396.</b> Keep the message in the centre. Phones crop the sides and your photo covers the bottom-left.</div>
         </div>
 
-        <div class="card quiet">
-          <div class="ctitle">Write for everyone</div>
-          <div class="body">Broad tips that could sit on any account in any niche.</div>
+        <div class="card">
+          <div class="chk">2</div>
+          <div class="ctitle">Photo is close and clear</div>
+          <div class="body">It shows as a circle. Centre your face and upload bigger than <b>400 × 400</b> so it stays sharp.</div>
         </div>
+
         <div class="card spotlight">
-          <span class="tag">Biggest gap</span>
-          <div class="ctitle">Write for one buyer</div>
-          <div class="body">Every post answers a question their best client asked this month.</div>
+          <div class="chk">3</div>
+          <div class="ctitle"><span class="lbl">Fix this first</span>Headline says who you help</div>
+          <div class="body">It follows you into search, comments and invites. Only the first <b>60–70 of 220</b> characters show. Lead with it.</div>
         </div>
 
-        <div class="card quiet">
-          <div class="ctitle">Chase likes</div>
-          <div class="body">Judge a post by reactions, then copy whatever got the most.</div>
-        </div>
-        <div class="card win">
-          <div class="ctitle">Track DMs</div>
-          <div class="body">Judge a post by the conversations it starts with real buyers.</div>
+        <div class="card">
+          <div class="chk">4</div>
+          <div class="ctitle">About opens with them</div>
+          <div class="body">About <b>300 of 2,600</b> characters show before "see more". Spend them on their problem, not your history.</div>
         </div>
 
-        <div class="card quiet">
-          <div class="ctitle">Leave the profile alone</div>
-          <div class="body">The same headline and banner since the account was opened.</div>
-        </div>
-        <div class="card win">
-          <div class="ctitle">Treat it as a landing page</div>
-          <div class="body">Headline, banner and featured section all point to one offer.</div>
+        <div class="card">
+          <div class="chk">5</div>
+          <div class="ctitle">Featured points to one offer</div>
+          <div class="body">Pin the post, link or document you want visitors to act on. Not an old announcement.</div>
         </div>
 
-        <div class="card quiet">
-          <div class="ctitle">Comment "great post"</div>
-          <div class="body">Visible, forgettable, and the same as everyone else's.</div>
+        <div class="card">
+          <div class="chk">6</div>
+          <div class="ctitle">Your URL is your name</div>
+          <div class="body">linkedin.com/in/yourname, not a string of numbers. It goes on every deck and email signature.</div>
         </div>
-        <div class="card win">
-          <div class="ctitle">Comment with a point</div>
-          <div class="body">Two lines that add something, posted in the first hour.</div>
+
+        <div class="card">
+          <div class="chk">7</div>
+          <div class="ctitle">Experience reads as results</div>
+          <div class="body">Each role opens with what changed because of you, not a list of duties.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">8</div>
+          <div class="ctitle">One clear way to reach you</div>
+          <div class="body">A working link in Featured or contact info. Someone ready to buy should not have to search.</div>
         </div>
 
       </div>
       <div class="closer">
-        <div class="clab"><b>None of these need more time.</b> They need the same hours pointed at one buyer.</div>
-        <div class="cnum">Top 10%</div>
+        <div class="clab"><b>Posts bring people in.</b> Your profile decides whether they ever reach out.</div>
+        <div class="cnum">8 / 8</div>
       </div>
     </div>
   </div>
@@ -181,33 +180,32 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
 
 <script>
 /* MOTION — two movers, chrome still.
-   the "most people" column fades in dim 0-30%, the top-10% column rises 32-62%,
-   the spotlight ignites 64-84%, closer 86-100%. You see the problem first. */
+   rows tick in down the list 0-58%, the lit row ignites 60-82%, closer 84-100%.
+   Headline, pill and footer are present at t=0. */
 (function(){
-  const quiet  = [...document.querySelectorAll('.card.quiet')];
-  const win    = [...document.querySelectorAll('.card.win, .card.spotlight')];
+  const rows   = [...document.querySelectorAll('.list > .card')];
   const spot   = document.querySelector('.card.spotlight');
   const closer = document.querySelector('.closer');
   const ease   = t => 1 - Math.pow(1 - t, 3);
   const cl     = t => Math.max(0, Math.min(1, t));
 
   window.renderFrame = function(t){
-    quiet.forEach((c, i) => {
-      const p = cl((t - i * 0.045) / 0.12);
-      c.style.opacity = p;
+    rows.forEach((r, i) => {
+      const p = cl((t - i * 0.055) / 0.14);
+      r.style.opacity   = p;
+      r.style.transform = `translateX(${(1 - ease(p)) * -20}px)`;
     });
-    win.forEach((c, i) => {
-      const p = cl((t - 0.32 - i * 0.05) / 0.12);
-      c.style.opacity   = p;
-      c.style.transform = `translateX(${(1 - ease(p)) * 18}px)`;
-    });
-    const g = ease(cl((t - 0.64) / 0.20));
+    const g = ease(cl((t - 0.60) / 0.22));
     spot.style.background = g < 1
       ? `linear-gradient(100deg, rgba(214,8,2,${g}) 0%, rgba(230,38,2,${g}) 100%), #141312`
       : '';
     spot.style.boxShadow = `0 18px 60px rgba(238,69,16,${0.30 * g}), 0 0 0 1px rgba(253,79,2,${0.45 * g})`;
+    const chk = spot.querySelector('.chk');
+    chk.style.background  = `rgba(255,255,255,${g})`;
+    chk.style.color       = g > 0.5 ? '' : 'var(--white-45)';
+    spot.querySelector('.lbl').style.opacity = 0.85 * g;
 
-    const v = ease(cl((t - 0.86) / 0.14));
+    const v = ease(cl((t - 0.84) / 0.16));
     closer.style.opacity   = v;
     closer.style.transform = `translateY(${(1 - v) * 14}px)`;
   };

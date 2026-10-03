@@ -27,6 +27,13 @@ What to actually do when the gate fails, ordered by how often each comes up.
 Count the gradient: fire word, spotlight, tag pill, send circle. Anything beyond those four
 goes back to Char or White. Card titles in Ember are the usual leak; set them back to White.
 
+## "Body text on the lit card is hard to read"
+*Symptoms: aspect 4 below 5; small white text looks thin on the orange side.*
+
+The lit card is on the full **Fire** gradient. Switch it to **Fire-lit**
+(`linear-gradient(100deg, #D60802, #E62602)`); white stays at 4.52:1 or better across the whole
+card. Keep the full gradient for the fire word, the pill and the send circle only.
+
 ## "The stage looks muddy"
 *Symptoms: aspect 3 below 5; the black reads grey or brown.*
 

@@ -97,6 +97,7 @@ python3 ~/.claude/skills/javeriya-design/scripts/greygate.py sheet.html         
 python3 ~/.claude/skills/javeriya-craft/scripts/autofix.py  sheet.html           # measure-fix loop
 python3 ~/.claude/skills/javeriya-design/scripts/build.py   sheet.html static    # 4K PNG
 python3 ~/.claude/skills/javeriya-design/scripts/build.py   sheet.html motion    # GIF + MP4
+python3 ~/.claude/skills/javeriya-design/scripts/build.py   sheet.html motion4k  # 4K GIF + MP4
 ```
 
 ## If something goes wrong
@@ -114,7 +115,7 @@ python3 ~/.claude/skills/javeriya-design/scripts/build.py   sheet.html motion   
 ```
 javeriya-brand/   SKILL.md · brand-kit.md · frames.md · style-kit.md · design-note-format.md
                   assets/ (Geist ×5, Fraunces 900 italic, OFL licences, her photo)
-javeriya-design/  SKILL.md · build.py · greygate.py · 2 templates + specs for 6 more
+javeriya-design/  SKILL.md · build.py · greygate.py · 3 templates + specs for 5 more
                   topic-ideas.md · voice.md · post-formats.md · shipped-log.md · assets/
 javeriya-craft/   SKILL.md · autofix.py · win-matrix.md · design-laws.md
                   fix-recipes.md · craft-benchmarks.md · assets/

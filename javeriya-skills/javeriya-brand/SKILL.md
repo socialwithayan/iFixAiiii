@@ -43,16 +43,24 @@ grew into a page.
 
 | Token | Hex | Job |
 |---|---|---|
-| **Fire** | `#D60802 → #FD4F02` | the gradient, at 100°. The spotlight, the fire word, the tag pill, the send circle. |
+| **Fire** | `#D60802 → #FD4F02` | the gradient, at 100°. The fire word, the tag pill, the send circle. Lit cards use the text-safe **Fire-lit** (below). |
 | **Ember** | `#EE4510` | the solid midpoint, for one figure and one label where a gradient cannot go. 5.3:1 on Night. |
 | **Crimson** | `#930405` | from her Jav & Co mark. Deep wells and pressed states only. |
 
 Every value was sampled from her banner, not picked. The pill in her banner runs `#D60802` on
 the left to `#FD4F02` on the right; that gradient is the brand.
 
-**One contrast rule matters.** White on the orange end of the gradient is 3.34:1, which passes
-only for large text. **Anything set on fire is 19px bold or bigger.** Body copy on the
-spotlight is white at 16px, and it sits over the red half, where white is 5.39:1.
+**One contrast rule matters.** White on her gradient starts at 5.39:1 on the red end but falls
+below 4.5:1 about 42% of the way across, reaching 3.34:1 at full orange. So fire comes in two
+strengths:
+
+| Token | Run | Use |
+|---|---|---|
+| **Fire** | `#D60802 → #FD4F02` | the fire word, the tag pill, the send circle: text on black, or large bold text |
+| **Fire-lit** | `#D60802 → #E62602` | **every lit card.** White body copy stays at 4.52:1 or better across the whole card |
+
+The lit card reads a touch deeper and redder than the pill, which is right: it carries reading
+text, and the pill carries five large words.
 
 ---
 
@@ -65,7 +73,7 @@ Her whole promise is *get noticed, be in the top 10%*. The Spotlight puts that p
 the layout: every sheet picks a winner. A reader sees, at a glance and before reading a word,
 which one thing matters most.
 
-**What the spotlight is:** a `.card.spotlight`. Fire-gradient fill, white type, a soft ember
+**What the spotlight is:** a `.card.spotlight`. Fire-lit gradient fill, white type, a soft ember
 glow, and usually a small Night tag ("Start here", "Biggest gap", "#1") in its corner.
 
 **The three tests:**

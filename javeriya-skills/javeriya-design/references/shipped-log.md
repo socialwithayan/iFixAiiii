@@ -5,7 +5,7 @@ Every finished sheet gets one row, appended at the top. Check it at Stage 1 (top
 
 | Date | Topic | Lane | Frame | Lit (and why) | Sponsored | Note |
 |---|---|---|---|---|---|---|
-| — | _(nothing shipped yet)_ | — | — | — | — | first run starts here |
+| 2026-10-03 | Your profile is a landing page: 8-check audit | Profile as a landing page | Checklist | #3 Headline: the only part people see without visiting, in search, comments and invites | no | first sheet; facts sourced 2026-10. Next: rotate off Checklist |
 
 ## Frame rotation
 
@@ -20,7 +20,7 @@ Never the same frame twice in a row. Never three times in one week.
 | Hero + Stack | — | 0 |
 | Timeline | — | 0 |
 | Prompt Stack | — | 0 |
-| Checklist | — | 0 |
+| Checklist | 2026-10-03 | 1 |
 
 ## What to record
 

@@ -32,6 +32,8 @@
   /* ---- fire: her one colour ---- */
   --fire-red:#D60802; --fire-orange:#FD4F02; --ember:#EE4510; --crimson:#930405;
   --fire:linear-gradient(100deg,var(--fire-red) 0%,var(--fire-orange) 100%);
+  /* text-safe fire for lit cards: white body copy stays >= 4.52:1 end to end */
+  --fire-lit:linear-gradient(100deg,var(--fire-red) 0%,#E62602 100%);
   --glow:0 18px 60px rgba(238,69,16,.30), 0 0 0 1px rgba(253,79,2,.45);
   /* ---- space, radius ---- */
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
@@ -68,7 +70,7 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
 .body{font:400 16px/1.5 Geist;color:var(--white-70);margin-top:var(--s2)}
 
 /* THE SPOTLIGHT — exactly one per sheet */
-.card.spotlight{background:var(--fire);border-color:transparent;box-shadow:var(--glow)}
+.card.spotlight{background:var(--fire-lit);border-color:transparent;box-shadow:var(--glow)}
 .card.spotlight .num{color:rgba(255,255,255,.55)}
 .card.spotlight .ctitle,.card.spotlight .body{color:#fff}
 .tag{position:absolute;top:24px;right:24px;background:var(--night);color:#fff;border-radius:var(--r-round);
@@ -186,7 +188,7 @@ body{background:#000;font-family:Geist,system-ui,sans-serif;
     // the ignition: the lit card starts as charcoal and catches fire
     const g = ease(cl((t - 0.58) / 0.24));
     spot.style.background = g < 1
-      ? `linear-gradient(100deg, rgba(214,8,2,${g}) 0%, rgba(253,79,2,${g}) 100%), #141312`
+      ? `linear-gradient(100deg, rgba(214,8,2,${g}) 0%, rgba(230,38,2,${g}) 100%), #141312`
       : '';
     spot.style.boxShadow  = `0 18px 60px rgba(238,69,16,${0.30 * g}), 0 0 0 1px rgba(253,79,2,${0.45 * g})`;
     spot.querySelectorAll('.ctitle,.body,.tag').forEach(e => e.style.opacity = 0.55 + 0.45 * g);

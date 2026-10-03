@@ -120,7 +120,12 @@ Then run the win matrix in `/javeriya-craft`. **Nothing exports below the bar.**
 ```bash
 python3 scripts/build.py <sheet>.html static    # <name>-4k.png   2160x2700
 python3 scripts/build.py <sheet>.html motion    # <name>-feed.gif + <name>-motion.mp4
+python3 scripts/build.py <sheet>.html motion4k  # <name>-4k.gif (2160x2700) + <name>-motion.mp4
 ```
+
+`motion4k` writes the GIF at full 2160×2700. The frames are captured at that size, so it is
+native resolution, not an upscale, but the file is several times larger (about 6 MB for a
+typical sheet against about 2–3 MB for the feed GIF).
 
 **Where to post what:** LinkedIn is her home, so the MP4 goes there (it autoplays and holds the
 fire gradient far better than a GIF). The GIF is for X. The still PNG is for a carousel or a
@@ -160,6 +165,7 @@ python3 scripts/greygate.py  sheet.html          # 15-check grey gate
 python3 scripts/build.py     sheet.html audit    # autofix loop (via /javeriya-craft)
 python3 scripts/build.py     sheet.html static   # 4K PNG
 python3 scripts/build.py     sheet.html motion   # GIF + MP4
+python3 scripts/build.py     sheet.html motion4k # 4K GIF + MP4
 ```
 
 Run them from the folder holding the HTML; output lands next to it.

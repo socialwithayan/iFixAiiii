@@ -28,9 +28,11 @@ Score what is on the screen, not what you meant.
 - **3 or below**: the glow muddies text, or the stage reads grey rather than black.
 
 ### 4. Contrast
-- **5**: every text clears its floor. Anything set on fire is 19px bold or larger, and body copy
-  on the spotlight sits over the red half.
-- **3 or below**: small text on the orange end of the gradient (3.34:1). **Fail.**
+- **5**: every text clears its floor. Lit cards use **Fire-lit** (`#D60802 → #E62602`), so white
+  body copy is 4.52:1 or better end to end. The full Fire gradient only carries the fire word,
+  the pill and the send circle.
+- **3 or below**: a lit card on the full Fire gradient with body copy over the orange end
+  (down to 3.34:1). **Fail.**
 
 ### 5. Type split
 - **5**: bold subject, regular promise, one Fraunces fire word, and the fire word is the

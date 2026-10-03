@@ -142,7 +142,8 @@ Lit card    the well goes rgba(7,6,6,.35) on fire, text stays white
 
 ---
 
-## 8. CHECKLIST — an audit
+## 8. CHECKLIST ✓ — an audit
+`templates/checklist.html`
 
 7–10 short checks in a single column of slim rows. The most-skipped check is lit.
 

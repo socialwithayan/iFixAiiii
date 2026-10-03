@@ -26,6 +26,9 @@ reasoning live in `../SKILL.md`; this file is the values.
   --ember:       #EE4510;            /* solid midpoint, 5.3:1 on --night */
   --crimson:     #930405;            /* deep wells, pressed states       */
   --fire: linear-gradient(100deg, var(--fire-red) 0%, var(--fire-orange) 100%);
+  /* lit cards only: white body copy stays >= 4.52:1 across the whole card.
+     The full --fire drops below 4.5:1 about 42% of the way to orange. */
+  --fire-lit: linear-gradient(100deg, var(--fire-red) 0%, #E62602 100%);
   --glow: 0 18px 60px rgba(238,69,16,.30), 0 0 0 1px rgba(253,79,2,.45);
 
   /* ---- space, radius ---- */
@@ -102,7 +105,7 @@ One at most. It sits above the headline, the way "Be in the Top 10%" sits above 
       border-radius:var(--r-card);padding:26px 28px}
 
 /* THE SPOTLIGHT — exactly one per sheet */
-.card.spotlight{background:var(--fire);border-color:transparent;box-shadow:var(--glow)}
+.card.spotlight{background:var(--fire-lit);border-color:transparent;box-shadow:var(--glow)}
 .card.spotlight .ctitle,.card.spotlight .body{color:#fff}
 
 .tag{position:absolute;top:24px;right:24px;background:var(--night);color:#fff;
@@ -197,7 +200,7 @@ window.renderFrame = function(t){            // t in 0..1
   });
   const g = ease(cl((t - 0.58) / 0.24));     // 2. the spotlight ignites
   spot.style.background = g < 1
-    ? `linear-gradient(100deg, rgba(214,8,2,${g}), rgba(253,79,2,${g})), #141312` : '';
+    ? `linear-gradient(100deg, rgba(214,8,2,${g}), rgba(230,38,2,${g})), #141312` : '';
   spot.style.boxShadow = `0 18px 60px rgba(238,69,16,${.30*g}), 0 0 0 1px rgba(253,79,2,${.45*g})`;
 };
 ```

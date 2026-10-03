@@ -4,7 +4,8 @@ JAVERIYA DESIGN — build + export.
 
 Usage:
     python3 scripts/build.py <design.html> static   # 4K PNG  (2160x2700)
-    python3 scripts/build.py <design.html> motion   # MP4 + feed GIF
+    python3 scripts/build.py <design.html> motion   # MP4 + feed GIF (1080x1350)
+    python3 scripts/build.py <design.html> motion4k # MP4 + 4K GIF  (2160x2700)
     python3 scripts/build.py <design.html> audit    # hand off to the craft autofix loop
 
 Run it from inside the design folder — output lands next to the HTML.
@@ -250,7 +251,7 @@ def render_static(final: pathlib.Path, stem: str):
     _report(m, stem)
 
 
-def render_motion(final: pathlib.Path, stem: str):
+def render_motion(final: pathlib.Path, stem: str, four_k: bool = False):
     """12-16s budget: 9s of animation, 4.5s hold. The hold frames are copies of
     the rest frame — re-screenshotting identical pixels is wasted minutes.
 
@@ -293,10 +294,14 @@ def render_motion(final: pathlib.Path, stem: str):
     # ffmpeg's two-pass palette is both smaller and cleaner on flat brand colour,
     # so use it when a real ffmpeg is around. Pillow is the no-dependency
     # fallback so motion still ships on a bare machine.
-    gif = f"{stem}-feed.gif"
+    # Frames are captured at 2x, so they are already 2160x2700: the 4K GIF is the
+    # frames at native size, not an upscale. It is several times the file size of
+    # the feed GIF, which is why it is opt-in.
+    gw, gh = (EXPORT_W, EXPORT_H) if four_k else (CANVAS_W, CANVAS_H)
+    gif = f"{stem}-4k.gif" if four_k else f"{stem}-feed.gif"
     if ff:
         pal = str(pathlib.Path(gif).with_name("javeriya-palette.png"))
-        vf = f"fps={FPS},scale={CANVAS_W}:{CANVAS_H}:flags=lanczos"
+        vf = f"fps={FPS},scale={gw}:{gh}:flags=lanczos"
         subprocess.run([ff, "-y", "-loglevel", "error", "-framerate", str(FPS),
                         "-i", "frames/f%04d.png", "-vf",
                         f"{vf},palettegen=max_colors=128:stats_mode=diff", pal], check=True)
@@ -312,16 +317,17 @@ def render_motion(final: pathlib.Path, stem: str):
         # frames is most of the file size for none of the motion.
         anim, hold_ms = paths[:total + 1], int(HOLD * 1000)
         master = Image.open("frames/hold.png").convert("RGB") \
-                      .resize((CANVAS_W, CANVAS_H), Image.LANCZOS) \
+                      .resize((gw, gh), Image.LANCZOS) \
                       .quantize(colors=128, method=Image.MEDIANCUT)
-        seq = [Image.open(fp).convert("RGB").resize((CANVAS_W, CANVAS_H), Image.LANCZOS)
+        seq = [Image.open(fp).convert("RGB").resize((gw, gh), Image.LANCZOS)
                  .quantize(palette=master, dither=Image.FLOYDSTEINBERG) for fp in anim]
         durations = [int(1000 / FPS)] * len(seq)
         durations[-1] = hold_ms
         seq[0].save(gif, save_all=True, append_images=seq[1:], loop=0,
                     duration=durations, optimize=True, disposal=1)
     kb = pathlib.Path(gif).stat().st_size // 1024
-    print(f"rendered  {gif}  {kb} KB" + ("  (large — drop FPS or colours)" if kb > 8192 else ""))
+    big = 8192 * (4 if four_k else 1)
+    print(f"rendered  {gif}  {gw}x{gh}  {kb} KB" + ("  (large — drop FPS or colours)" if kb > big else ""))
 
     # ---- MP4, when a real ffmpeg is around (LinkedIn prefers it to a GIF) ----
     if ff:
@@ -363,6 +369,8 @@ def main():
         render_static(final, src.stem)
     elif mode == "motion":
         render_motion(final, src.stem)
+    elif mode == "motion4k":
+        render_motion(final, src.stem, four_k=True)
     else:
         print("unknown mode:", mode)
         sys.exit(1)

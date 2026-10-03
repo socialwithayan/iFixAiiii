@@ -1,0 +1,218 @@
+<!doctype html>
+<!--
+  JAVERIYA · FRAME 02 — VERSUS
+  Most people on the left, the top 10% on the right. The left is dimmed on
+  purpose. Exactly one right-hand card is lit: the single change that closes
+  the biggest gap.
+
+  Class names are the contract the scripts measure by. Sample copy is placeholder.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Javeriya · Versus</title>
+<style>
+@font-face{font-family:Geist;font-weight:400;font-style:normal;font-display:block;src:url({{GEIST_400}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:500;font-style:normal;font-display:block;src:url({{GEIST_500}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:600;font-style:normal;font-display:block;src:url({{GEIST_600}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:700;font-style:normal;font-display:block;src:url({{GEIST_700}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:800;font-style:normal;font-display:block;src:url({{GEIST_800}}) format('woff2')}
+@font-face{font-family:Fraunces;font-weight:900;font-style:italic;font-display:block;src:url({{FRAUNCES_900I}}) format('woff2')}
+
+:root{
+  --night:#070606; --char:#141312; --char-2:#1C1A19;
+  --line:rgba(255,255,255,.09);
+  --white:#F9F9F9; --white-70:#BDB8B4; --white-45:#8C8682;
+  --fire-red:#D60802; --fire-orange:#FD4F02; --ember:#EE4510; --crimson:#930405;
+  --fire:linear-gradient(100deg,var(--fire-red) 0%,var(--fire-orange) 100%);
+  /* text-safe fire for lit cards: white body copy stays >= 4.52:1 end to end */
+  --fire-lit:linear-gradient(100deg,var(--fire-red) 0%,#E62602 100%);
+  --glow:0 18px 60px rgba(238,69,16,.30), 0 0 0 1px rgba(253,79,2,.45);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --r-card:16px; --r-panel:22px; --r-round:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Geist,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--night)}
+.canvas::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(60% 45% at 100% 60%,rgba(214,8,2,.20),transparent 70%),
+             radial-gradient(40% 28% at 0% 0%,rgba(253,79,2,.07),transparent 70%)}
+.content{position:relative;z-index:1;padding:52px 56px 0}
+.rowband{min-height:var(--rh)}
+
+/* ---- head ---- */
+.pill{display:inline-block;background:var(--fire);color:#fff;border-radius:12px;
+      font:italic 700 20px/1 Geist;letter-spacing:-.01em;padding:10px 16px 11px}
+.h1{font:400 58px/1.06 Geist;letter-spacing:-.035em;color:var(--white);margin-top:var(--s5)}
+.h1 b{font-weight:700}
+.fire{font-family:Fraunces;font-style:italic;font-weight:900;letter-spacing:-.015em;
+      background:var(--fire);-webkit-background-clip:text;background-clip:text;color:transparent;
+      padding-right:.08em}
+.deck{font:400 20px/1.45 Geist;color:var(--white-70);margin-top:var(--s4)}
+
+/* ---- the two columns ---- */
+.labels,.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+.labels{margin-top:var(--s2)}
+.lab{font:700 13px/1 Geist;letter-spacing:.14em;text-transform:uppercase;color:var(--white-45);
+     padding:0 4px 12px}
+.lab.win{color:var(--ember)}
+.board{row-gap:14px}
+.card{position:relative;height:150px;border-radius:var(--r-card);padding:20px 24px;
+      display:flex;flex-direction:column;justify-content:center}
+.card.quiet{background:transparent;border:1px dashed rgba(255,255,255,.12)}
+.card.quiet .ctitle{color:var(--white-45);font-weight:500}
+.card.quiet .body{color:#6E6965}
+.card.win{background:var(--char);border:1px solid var(--line)}
+.ctitle{font:600 21px/1.25 Geist;letter-spacing:-.02em;color:var(--white)}
+.body{font:400 15px/1.5 Geist;color:var(--white-70);margin-top:6px}
+
+/* THE SPOTLIGHT — exactly one per sheet */
+.card.spotlight{background:var(--fire-lit);border-color:transparent;box-shadow:var(--glow)}
+.card.spotlight .ctitle,.card.spotlight .body{color:#fff}
+.tag{position:absolute;top:16px;right:16px;background:var(--night);color:#fff;border-radius:var(--r-round);
+     font:700 12px/1 Geist;letter-spacing:.12em;text-transform:uppercase;padding:7px 11px}
+
+/* ---- closer ---- */
+.closer{margin-top:18px;height:104px;background:var(--char-2);border:1px solid var(--line);
+        border-radius:var(--r-panel);padding:0 32px;display:flex;align-items:center;
+        justify-content:space-between}
+.closer .clab{font:500 18px/1.4 Geist;color:var(--white-70);max-width:640px}
+.closer .clab b{color:var(--white);font-weight:600}
+.closer .cnum{font:italic 900 44px/1 Fraunces;color:var(--ember);letter-spacing:-.02em}
+
+/* ---- footer ---- */
+.footer{position:absolute;top:1306px;left:0;right:0;height:44px;z-index:2;
+        background:#0D0B0B;border-top:1px solid var(--line);
+        display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.footer .who{display:flex;align-items:center;gap:10px}
+.footer img{width:28px;height:28px;border-radius:var(--r-round);display:block}
+.footer .name{font:600 15px/1 Geist;color:var(--white)}
+.footer .dm{display:flex;align-items:center;gap:10px;font:500 13px/1 Geist;letter-spacing:.06em;
+            color:var(--white-70);text-transform:uppercase}
+.footer .dm b{font-style:italic;font-weight:700;color:var(--fire-orange)}
+.footer .send{width:26px;height:26px;border-radius:var(--r-round);background:var(--fire);
+              display:grid;place-items:center}
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <div class="content">
+
+    <div class="rowband" id="head" style="--rh:262px">
+      <span class="pill">Same platform. Different results.</span>
+      <h1 class="h1"><b>Most People Post.</b> The Top 10% Get <span class="fire">Chosen.</span></h1>
+      <p class="deck">Five habits that separate a busy feed from a profile people DM.</p>
+    </div>
+
+    <div class="rowband" id="body" style="--rh:930px">
+      <div class="labels">
+        <div class="lab">Most people</div>
+        <div class="lab win">The top 10%</div>
+      </div>
+      <div class="board">
+
+        <div class="card quiet">
+          <div class="ctitle">Post when inspired</div>
+          <div class="body">Three posts in a good week, then silence for a month.</div>
+        </div>
+        <div class="card win">
+          <div class="ctitle">Post on a system</div>
+          <div class="body">One idea a week, drafted with AI, queued before Monday.</div>
+        </div>
+
+        <div class="card quiet">
+          <div class="ctitle">Write for everyone</div>
+          <div class="body">Broad tips that could sit on any account in any niche.</div>
+        </div>
+        <div class="card spotlight">
+          <span class="tag">Biggest gap</span>
+          <div class="ctitle">Write for one buyer</div>
+          <div class="body">Every post answers a question their best client asked this month.</div>
+        </div>
+
+        <div class="card quiet">
+          <div class="ctitle">Chase likes</div>
+          <div class="body">Judge a post by reactions, then copy whatever got the most.</div>
+        </div>
+        <div class="card win">
+          <div class="ctitle">Track DMs</div>
+          <div class="body">Judge a post by the conversations it starts with real buyers.</div>
+        </div>
+
+        <div class="card quiet">
+          <div class="ctitle">Leave the profile alone</div>
+          <div class="body">The same headline and banner since the account was opened.</div>
+        </div>
+        <div class="card win">
+          <div class="ctitle">Treat it as a landing page</div>
+          <div class="body">Headline, banner and featured section all point to one offer.</div>
+        </div>
+
+        <div class="card quiet">
+          <div class="ctitle">Comment "great post"</div>
+          <div class="body">Visible, forgettable, and the same as everyone else's.</div>
+        </div>
+        <div class="card win">
+          <div class="ctitle">Comment with a point</div>
+          <div class="body">Two lines that add something, posted in the first hour.</div>
+        </div>
+
+      </div>
+      <div class="closer">
+        <div class="clab"><b>None of these need more time.</b> They need the same hours pointed at one buyer.</div>
+        <div class="cnum">Top 10%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="who">
+      <img src="{{AVATAR}}" alt="">
+      <span class="name">Follow Javeriya A. For More</span>
+    </div>
+    <div class="dm">DM for <b>collaborations</b>
+      <span class="send"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M2.5 11.2 21 3.4c.7-.3 1.4.4 1.1 1.1l-7.8 18.5c-.3.8-1.5.7-1.7-.1l-1.9-7.1-7.1-1.9c-.8-.2-.9-1.4-.1-1.7z"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* MOTION — two movers, chrome still.
+   the "most people" column fades in dim 0-30%, the top-10% column rises 32-62%,
+   the spotlight ignites 64-84%, closer 86-100%. You see the problem first. */
+(function(){
+  const quiet  = [...document.querySelectorAll('.card.quiet')];
+  const win    = [...document.querySelectorAll('.card.win, .card.spotlight')];
+  const spot   = document.querySelector('.card.spotlight');
+  const closer = document.querySelector('.closer');
+  const ease   = t => 1 - Math.pow(1 - t, 3);
+  const cl     = t => Math.max(0, Math.min(1, t));
+
+  window.renderFrame = function(t){
+    quiet.forEach((c, i) => {
+      const p = cl((t - i * 0.045) / 0.12);
+      c.style.opacity = p;
+    });
+    win.forEach((c, i) => {
+      const p = cl((t - 0.32 - i * 0.05) / 0.12);
+      c.style.opacity   = p;
+      c.style.transform = `translateX(${(1 - ease(p)) * 18}px)`;
+    });
+    const g = ease(cl((t - 0.64) / 0.20));
+    spot.style.background = g < 1
+      ? `linear-gradient(100deg, rgba(214,8,2,${g}) 0%, rgba(230,38,2,${g}) 100%), #141312`
+      : '';
+    spot.style.boxShadow = `0 18px 60px rgba(238,69,16,${0.30 * g}), 0 0 0 1px rgba(253,79,2,${0.45 * g})`;
+
+    const v = ease(cl((t - 0.86) / 0.14));
+    closer.style.opacity   = v;
+    closer.style.transform = `translateY(${(1 - v) * 14}px)`;
+  };
+  window.renderFrame(0);
+})();
+</script>
+</body>
+</html>

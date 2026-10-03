@@ -1,0 +1,216 @@
+<!doctype html>
+<!--
+  JAVERIYA · FRAME 08 — CHECKLIST
+  Slim rows on a dark stage, one check per row. Exactly one row is lit:
+  the check to fix first.
+
+  Class names are the contract the scripts measure by.
+
+  This file ships with real, fact-checked copy (a LinkedIn profile audit),
+  sources checked 2026-10: headline 220 chars with ~60-70 visible in search,
+  comments and invites; About 2,600 chars with ~300 before "see more";
+  banner 1584x396 with the photo over the lower left; photo 400x400, shown
+  as a circle. Re-check the numbers before reusing it — LinkedIn changes them.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Javeriya · Checklist</title>
+<style>
+@font-face{font-family:Geist;font-weight:400;font-style:normal;font-display:block;src:url({{GEIST_400}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:500;font-style:normal;font-display:block;src:url({{GEIST_500}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:600;font-style:normal;font-display:block;src:url({{GEIST_600}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:700;font-style:normal;font-display:block;src:url({{GEIST_700}}) format('woff2')}
+@font-face{font-family:Geist;font-weight:800;font-style:normal;font-display:block;src:url({{GEIST_800}}) format('woff2')}
+@font-face{font-family:Fraunces;font-weight:900;font-style:italic;font-display:block;src:url({{FRAUNCES_900I}}) format('woff2')}
+
+:root{
+  --night:#070606; --char:#141312; --char-2:#1C1A19;
+  --line:rgba(255,255,255,.09);
+  --white:#F9F9F9; --white-70:#BDB8B4; --white-45:#8C8682;
+  --fire-red:#D60802; --fire-orange:#FD4F02; --ember:#EE4510; --crimson:#930405;
+  --fire:linear-gradient(100deg,var(--fire-red) 0%,var(--fire-orange) 100%);
+  /* text-safe fire for lit cards: white body copy stays >= 4.52:1 end to end */
+  --fire-lit:linear-gradient(100deg,var(--fire-red) 0%,#E62602 100%);
+  --glow:0 18px 60px rgba(238,69,16,.30), 0 0 0 1px rgba(253,79,2,.45);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --r-card:16px; --r-panel:22px; --r-round:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Geist,system-ui,sans-serif;
+     -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--night)}
+.canvas::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(65% 40% at 100% 38%,rgba(214,8,2,.20),transparent 70%),
+             radial-gradient(45% 30% at 0% 0%,rgba(253,79,2,.07),transparent 70%)}
+.content{position:relative;z-index:1;padding:52px 56px 0}
+.rowband{min-height:var(--rh)}
+
+/* ---- head ---- */
+.pill{display:inline-block;background:var(--fire);color:#fff;border-radius:12px;
+      font:italic 700 20px/1 Geist;letter-spacing:-.01em;padding:10px 16px 11px}
+.h1{font:400 58px/1.06 Geist;letter-spacing:-.035em;color:var(--white);margin-top:var(--s5)}
+.h1 b{font-weight:700}
+.fire{font-family:Fraunces;font-style:italic;font-weight:900;letter-spacing:-.015em;
+      background:var(--fire);-webkit-background-clip:text;background-clip:text;color:transparent;
+      padding-right:.08em}
+.deck{font:400 20px/1.45 Geist;color:var(--white-70);margin-top:var(--s4)}
+
+/* ---- the checklist ---- */
+.list{display:flex;flex-direction:column;gap:10px;margin-top:var(--s2)}
+.card{position:relative;height:96px;background:var(--char);border:1px solid var(--line);
+      border-radius:var(--r-card);padding:0 26px;display:grid;
+      grid-template-columns:30px 262px minmax(0,1fr);column-gap:20px;align-items:center}
+.chk{width:30px;height:30px;border-radius:var(--r-round);border:1.5px solid rgba(255,255,255,.22);
+     display:grid;place-items:center;font:600 13px/1 Geist;color:var(--white-45)}
+.ctitle{font:600 19px/1.25 Geist;letter-spacing:-.015em;color:var(--white)}
+.body{font:400 15px/1.45 Geist;color:var(--white-70)}
+.body b{font-weight:600;color:var(--white)}
+
+/* THE SPOTLIGHT — exactly one per sheet */
+.card.spotlight{background:var(--fire-lit);border-color:transparent;box-shadow:var(--glow)}
+.card.spotlight .chk{background:#fff;border-color:#fff;color:var(--fire-red)}
+.card.spotlight .ctitle,.card.spotlight .body,.card.spotlight .body b{color:#fff}
+.lbl{display:block;font:700 12px/1 Geist;letter-spacing:.14em;text-transform:uppercase;
+     color:#fff;opacity:.85;margin-bottom:7px}
+
+/* ---- closer ---- */
+.closer{margin-top:16px;height:100px;background:var(--char-2);border:1px solid var(--line);
+        border-radius:var(--r-panel);padding:0 32px;display:flex;align-items:center;
+        justify-content:space-between}
+.closer .clab{font:500 18px/1.4 Geist;color:var(--white-70);max-width:640px}
+.closer .clab b{color:var(--white);font-weight:600}
+.closer .cnum{font:italic 900 44px/1 Fraunces;color:var(--ember);letter-spacing:-.02em}
+
+/* ---- footer ---- */
+.footer{position:absolute;top:1306px;left:0;right:0;height:44px;z-index:2;
+        background:#0D0B0B;border-top:1px solid var(--line);
+        display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+.footer .who{display:flex;align-items:center;gap:10px}
+.footer img{width:28px;height:28px;border-radius:var(--r-round);display:block}
+.footer .name{font:600 15px/1 Geist;color:var(--white)}
+.footer .dm{display:flex;align-items:center;gap:10px;font:500 13px/1 Geist;letter-spacing:.06em;
+            color:var(--white-70);text-transform:uppercase}
+.footer .dm b{font-style:italic;font-weight:700;color:var(--fire-orange)}
+.footer .send{width:26px;height:26px;border-radius:var(--r-round);background:var(--fire);
+              display:grid;place-items:center}
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <div class="content">
+
+    <div class="rowband" id="head" style="--rh:236px">
+      <span class="pill">Fix this before you post again</span>
+      <h1 class="h1"><b>Your Profile Is A Landing Page.</b> Make It <span class="fire">Convert.</span></h1>
+      <p class="deck">Your posts send people here. These 8 checks decide if they stay.</p>
+    </div>
+
+    <div class="rowband" id="body" style="--rh:960px">
+      <div class="list">
+
+        <div class="card">
+          <div class="chk">1</div>
+          <div class="ctitle">Banner works on mobile</div>
+          <div class="body"><b>1584 × 396.</b> Keep the message in the centre. Phones crop the sides and your photo covers the bottom-left.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">2</div>
+          <div class="ctitle">Photo is close and clear</div>
+          <div class="body">It shows as a circle. Centre your face and upload bigger than <b>400 × 400</b> so it stays sharp.</div>
+        </div>
+
+        <div class="card spotlight">
+          <div class="chk">3</div>
+          <div class="ctitle"><span class="lbl">Fix this first</span>Headline says who you help</div>
+          <div class="body">It follows you into search, comments and invites. Only the first <b>60–70 of 220</b> characters show. Lead with it.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">4</div>
+          <div class="ctitle">About opens with them</div>
+          <div class="body">About <b>300 of 2,600</b> characters show before "see more". Spend them on their problem, not your history.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">5</div>
+          <div class="ctitle">Featured points to one offer</div>
+          <div class="body">Pin the post, link or document you want visitors to act on. Not an old announcement.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">6</div>
+          <div class="ctitle">Your URL is your name</div>
+          <div class="body">linkedin.com/in/yourname, not a string of numbers. It goes on every deck and email signature.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">7</div>
+          <div class="ctitle">Experience reads as results</div>
+          <div class="body">Each role opens with what changed because of you, not a list of duties.</div>
+        </div>
+
+        <div class="card">
+          <div class="chk">8</div>
+          <div class="ctitle">One clear way to reach you</div>
+          <div class="body">A working link in Featured or contact info. Someone ready to buy should not have to search.</div>
+        </div>
+
+      </div>
+      <div class="closer">
+        <div class="clab"><b>Posts bring people in.</b> Your profile decides whether they ever reach out.</div>
+        <div class="cnum">8 / 8</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="who">
+      <img src="{{AVATAR}}" alt="">
+      <span class="name">Follow Javeriya A. For More</span>
+    </div>
+    <div class="dm">DM for <b>collaborations</b>
+      <span class="send"><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M2.5 11.2 21 3.4c.7-.3 1.4.4 1.1 1.1l-7.8 18.5c-.3.8-1.5.7-1.7-.1l-1.9-7.1-7.1-1.9c-.8-.2-.9-1.4-.1-1.7z"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* MOTION — two movers, chrome still.
+   rows tick in down the list 0-58%, the lit row ignites 60-82%, closer 84-100%.
+   Headline, pill and footer are present at t=0. */
+(function(){
+  const rows   = [...document.querySelectorAll('.list > .card')];
+  const spot   = document.querySelector('.card.spotlight');
+  const closer = document.querySelector('.closer');
+  const ease   = t => 1 - Math.pow(1 - t, 3);
+  const cl     = t => Math.max(0, Math.min(1, t));
+
+  window.renderFrame = function(t){
+    rows.forEach((r, i) => {
+      const p = cl((t - i * 0.055) / 0.14);
+      r.style.opacity   = p;
+      r.style.transform = `translateX(${(1 - ease(p)) * -20}px)`;
+    });
+    const g = ease(cl((t - 0.60) / 0.22));
+    spot.style.background = g < 1
+      ? `linear-gradient(100deg, rgba(214,8,2,${g}) 0%, rgba(230,38,2,${g}) 100%), #141312`
+      : '';
+    spot.style.boxShadow = `0 18px 60px rgba(238,69,16,${0.30 * g}), 0 0 0 1px rgba(253,79,2,${0.45 * g})`;
+    const chk = spot.querySelector('.chk');
+    chk.style.background  = `rgba(255,255,255,${g})`;
+    chk.style.color       = g > 0.5 ? '' : 'var(--white-45)';
+    spot.querySelector('.lbl').style.opacity = 0.85 * g;
+
+    const v = ease(cl((t - 0.84) / 0.16));
+    closer.style.opacity   = v;
+    closer.style.transform = `translateY(${(1 - v) * 14}px)`;
+  };
+  window.renderFrame(0);
+})();
+</script>
+</body>
+</html>

@@ -85,6 +85,7 @@ scripts/
 # ...except the Saman design skills, where scripts/ is the skill layout
 # convention and holds the build, grey-gate and autofix engines.
 !saman-skills/*/scripts/
+!javeriya-skills/*/scripts/
 docs-content/
 website-misalignments-*.md
 
